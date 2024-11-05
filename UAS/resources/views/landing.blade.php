@@ -36,8 +36,19 @@
                 <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  Input Lingkup Acara Disini">
             </div>
         </div>
-        <div class="grid grid-cols-3">
-            
+        <div class="grid grid-cols-3 ml-8 pb-7">
+            <div>
+                <p class="text-xl font-bold">Lokasi Acara</p>
+                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  Input Deskripsi Acara Disini">
+            </div>
+            <div>
+                <p class="text-xl font-bold">Proposal Acara</p>
+                <input type="file" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  Input Tanggal Acara Disini">
+            </div>
+            <div>
+                <p class="text-xl font-bold">RA/RMA Acara</p>
+                <input type="file" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  Input Lingkup Acara Disini">
+            </div>
         </div>
     </div>
     <div class="mx-14 bg-gray-200 rounded-xl mt-8 mb-4 pb-7">
