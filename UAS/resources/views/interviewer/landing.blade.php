@@ -13,7 +13,7 @@
         <div class="grid grid-cols-3 ml-8 mt-4">
             <div>
                 <p class="text-xl font-bold">Nama Acara</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  Input Nama Acara Disini">
+                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="Input Nama Acara Disini">
             </div>
             <div>
                 <p class="text-xl font-bold">Tanggal Open Recruitment</p>
@@ -27,27 +27,27 @@
         <div class="grid grid-cols-3 ml-8 mt-4 pb-7">
             <div class="col-span-2">
                 <p class="text-xl font-bold">Deskripsi Acara</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-32 mt-2" placeholder="  Input Deskripsi Acara Disini">
+                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-32 mt-2 px-2" placeholder="Input Deskripsi Acara Disini">
             </div>
             <div class="col-span-1">
                 <p class="text-xl font-bold">Tanggal Acara</p>
-                <input type="date" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="  Input Tanggal Acara Disini">
+                <input type="date" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="Input Tanggal Acara Disini">
                 <p class="text-xl font-bold mt-3">Lingkup Acara</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  Input Lingkup Acara Disini">
+                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2  px-2" placeholder="Input Lingkup Acara Disini">
             </div>
         </div>
         <div class="grid grid-cols-3 ml-8 pb-7">
             <div>
                 <p class="text-xl font-bold">Lokasi Acara</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  Input Deskripsi Acara Disini">
+                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="Input Lokasi Acara Disini">
             </div>
             <div>
                 <p class="text-xl font-bold">Proposal Acara</p>
-                <input type="file" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 pt-1 pl-1" placeholder="  Input Tanggal Acara Disini">
+                <input type="file" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 pt-1 pl-1 px-2">
             </div>
             <div>
                 <p class="text-xl font-bold">RA/RMA Acara</p>
-                <input type="file" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 pt-1 pl-1" placeholder="  Input Lingkup Acara Disini">
+                <input type="file" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 pt-1 pl-1">
             </div>
         </div>
     </div>
@@ -60,15 +60,15 @@
             <div class="grid grid-cols-3 ml-8 mt-4">
                 <div>
                     <p class="text-xl font-bold">Nama Divisi</p>
-                    <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  Input Nama Acara Disini">
+                    <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="Input Nama Acara Disini">
                 </div>
                 <div>
                     <p class="text-xl font-bold">Interviewer 1</p>
-                    <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  @john.petra.ac.id">
+                    <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="@john.petra.ac.id">
                 </div>
                 <div>
                     <p class="text-xl font-bold">Interviewer 2</p>
-                    <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  @john.petra.ac.id">
+                    <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="@john.petra.ac.id">
                 </div>
             </div>
         </div>
@@ -91,15 +91,15 @@
           <div class="grid grid-cols-3 ml-8 mt-4">
             <div>
                 <p class="text-xl font-bold">Nama Divisi</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  Input Nama Acara Disini">
+                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="Input Nama Acara Disini">
             </div>
             <div>
                 <p class="text-xl font-bold">Interviewer 1</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  @john.petra.ac.id">
+                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="@john.petra.ac.id">
             </div>
             <div>
                 <p class="text-xl font-bold">Interviewer 2</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2" placeholder="  @john.petra.ac.id">
+                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="@john.petra.ac.id">
             </div>
         </div>
           `;
