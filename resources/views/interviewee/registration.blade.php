@@ -3,7 +3,6 @@
 @section('title', 'User | Manage Page')
 
 @section('content')
-    @include('navbar.navbar')
     <p class="mx-14 mt-10 mb-5 font-bold text-4xl text-orange-500">Registration</p>
     <div class="bg-gray-300 mx-8 rounded-lg">
         <p class="text-center pt-4 mb-8 font-bold text-2xl">Welcome Grateful Generation Program Studi Informatika 2025</p>

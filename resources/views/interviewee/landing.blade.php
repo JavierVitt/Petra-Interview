@@ -3,7 +3,6 @@
 @section('title', 'User | Manage Page')
 
 @section('content')
-    @include('navbar.navbar')
     <p class="mx-14 mt-10 mb-5 font-bold text-4xl text-orange-500">Manage Interview</p>
     <div class="grid grid-cols-8 mx-12 rounded-xl shadow-lg mb-3" style="background-color:rgb(56,4,140)">
         <div class="col-span-4 text-left py-6 pl-4 font-bold text-white text-2xl">

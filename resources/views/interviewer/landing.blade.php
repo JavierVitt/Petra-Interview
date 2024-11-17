@@ -3,7 +3,6 @@
 @section('title', 'User | Landing Page')
 
 @section('content')
-    @include('navbar.navbar')
     <div class="grid grid-cols-2 mx-14 mt-10 mb-5">
         <p class="font-bold text-orange-500 text-4xl">Add Event</p>
         <div>Add Event</div>

@@ -14,8 +14,6 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/custom.css') }}"> --}}
 </head>
 <body>
-
-    @include('navbar.navbar')
     @yield('content')
 </body>
 </html>

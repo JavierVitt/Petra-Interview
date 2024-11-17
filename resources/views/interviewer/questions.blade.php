@@ -3,8 +3,7 @@
 @section('title', 'User | Manage Page')
 
 @section('content')
-    @include('navbar.navbar')
-    <p class="text-center text-4xl mt-12">Question 1: Berikan saya alasan mengapa saya harus merekrut anda!</p>
+    <p class="text-center text-4xl mt-12 montserratBold">Question 1: Berikan saya alasan mengapa saya harus merekrut anda!</p>
     <div class="text-center">
         <input type="text" class="mt-8 bg-gray-300 mx-8 w-11/12 h-96 rounded-lg" placeholder="Masukan Jawaban Anda Disini" autofocus>
     </div>
