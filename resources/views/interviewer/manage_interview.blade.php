@@ -14,7 +14,7 @@
             <p>05/10/2024 - 15/10/2024</p>
         </div>
         <div class="col-span-2 flex justify-end items-center">
-            <button class="text-black font-bold py-5 px-16 rounded-xl shadow-lg text-4xl" style="background-color:rgb(248,148,44)">Manage</button>
+            <button class="text-black font-bold py-5 px-16 rounded-xl shadow-lg text-4xl" style="background-color:rgb(248,148,44)" onclick="window.location.href='{{ route('manage_interview_details') }}'">Manage</button>
         </div>
     </div>
     <div class="grid grid-cols-8 mx-12 rounded-xl shadow-lg mb-3" style="background-color:rgb(56,4,140)">
