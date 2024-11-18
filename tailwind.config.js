@@ -12,9 +12,14 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
             },
+            colors:{
+                'peinter-yellow':'#f78a0e',
+                'peinter-purple':'#33008e'
+            }
         },
     },
     plugins: [],
+    darkMode: 'class',
 };

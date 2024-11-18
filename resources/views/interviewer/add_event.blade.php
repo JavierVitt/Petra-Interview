@@ -1,11 +1,10 @@
-@extends('templates.base')
+@extends('templates.base_interviewer')
 
 @section('title', 'User | Landing Page')
 
 @section('content')
     <div class="grid grid-cols-2 mx-14 mt-10 mb-5">
         <p class="font-bold text-orange-500 text-4xl">Add Event</p>
-        <div>Add Event</div>
     </div>
     <div class="mx-14 bg-gray-200 rounded-xl">
         <p class="ml-8 pt-4 font-bold text-4xl">Event</p>

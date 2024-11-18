@@ -52,3 +52,15 @@
     font-weight: 900;
     font-style: normal;
 }
+
+.activeNavbarInterviewer{
+    @apply text-peinter-yellow px-3 py-2;
+}
+
+.activeNavbarInterviewee{
+    @apply text-peinter-purple px-3 py-2;
+}
+
+p{
+    @apply montserratMedium my-5 dark:text-white;
+}

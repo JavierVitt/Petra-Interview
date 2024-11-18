@@ -1,4 +1,4 @@
-@extends('templates.base')
+@extends('templates.base_interviewee')
 
 @section('title', 'User | Manage Page')
 
