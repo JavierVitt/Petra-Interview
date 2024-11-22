@@ -7,7 +7,6 @@ Route::get('/', function () {
     // return view('interviewer/do_interview');
     // return view('interviewee/registration_form');
     return view('general/login');
-    
 });
 
 // interviewer
@@ -53,3 +52,11 @@ Route::get('/manage_applications', function () {
     return view('interviewee/manage_applications');
 })->name('manage_applications');
 
+// admin
+Route::get('/manage_events', function () {
+    return view('admin/manage_events');
+})->name('manage_events');
+
+Route::get('/detail_event', function () {
+    return view('admin/detail_event');
+})->name('detail_event');
