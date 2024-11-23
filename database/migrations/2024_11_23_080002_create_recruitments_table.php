@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('recruitments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('division_id')->constrained(
+                table: 'divisions', indexName: 'recruitment_division_id'
+            );
             $table->timestamps();
         });
     }

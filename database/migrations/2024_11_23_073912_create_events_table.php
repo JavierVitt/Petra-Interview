@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('proposal')->nullable();
             $table->integer('number_of_committee_members');
             $table->integer('target_participants')->nullable();
-            $table->string('status');
+            $table->string('status')->default("ongoing");
             $table->timestamps();
         });
     }
