@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 // login
@@ -40,9 +41,12 @@ Route::get('/do_interview', function () {
 
 
 // interviewee
-Route::get('/register_to_event', function () {
-    return view('interviewee/register_to_event');
-})->name('register_to_event');
+
+// Route::get('/register_to_event', function () {
+//     return view('interviewee/register_to_event');
+// })->name('register_to_event');
+
+Route::get('/register_to_event', [EventController::class, 'index'])->name('register_to_event');
 
 Route::get('/registration_form', function () {
     return view('interviewee/registration_form');
