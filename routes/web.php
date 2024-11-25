@@ -48,9 +48,8 @@ Route::get('/do_interview', function () {
 
 Route::get('/register_to_event', [EventController::class, 'index'])->name('register_to_event');
 
-Route::get('/registration_form', function () {
-    return view('interviewee/registration_form');
-})->name('registration_form');
+Route::get('/registration_form/{event}', [EventController::class, 'show'])->name('registration_form');
+
 
 Route::get('/manage_applications', function () {
     return view('interviewee/manage_applications');
