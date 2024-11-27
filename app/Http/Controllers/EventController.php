@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class EventController extends Controller
 {
@@ -21,9 +23,45 @@ class EventController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        // Validate the request
+        $validatedData = $request->validate([
+            'namaAcara' => 'required|string|max:255',
+            'tanggalOprec' => 'required|date',
+            'tanggalCloserec' => 'required|date|after_or_equal:tanggalOprec',
+            'deskripsiAcara' => 'nullable|string',
+            'tanggalAcara' => 'required|date|after_or_equal:tanggalCloserec',
+            'lingkupAcara' => 'nullable|string|max:255',
+            'lokasiAcara' => 'nullable|string|max:255',
+            'proposalAcara' => 'nullable|file|mimes:pdf|max:2048',
+            'raRmaAcara' => 'nullable|file|mimes:xlsx,xls|max:2048',
+        ],[
+            'namaAcara.max' => 'Nama Acara Terlalu Panjang',
+            'tanggalCloserec.after_or_equal' => 'Tanggal Close Recruitment Harus Lebih dari Tanggal Open Recruitment',
+            'tanggalAcara.after_or_equal' => 'Tanggal Acara Harus Lebih dari Tanggal Close Recruitment',
+            'lingkupAcara.max' => 'Lingkup Acara Terlalu Panjang',
+            'proposalAcara.mimes' => 'Tipe File Harus Berupa PDF',
+            'raRmaAcara.mimes' => 'Tipe File Harus Berupa XLSX atau XLS'
+        ]);
+
+        // Handle file uploadsdsada
+        if ($request->hasFile('proposalAcara')) {
+
+            $proposalExtension = $validatedData['proposalAcara']->getClientOriginalExtension();
+
+            $proposalNewName = Str::random(20) . '.' . $proposalExtension;
+            $validatedData['proposalAcara'] = $request->file('proposalAcara')->store('proposals');
+        }
+
+        if ($request->hasFile('raRmaAcara')) {
+            $validatedData['raRmaAcara'] = $request->file('raRmaAcara')->store('ramas');
+        }
+
+        $event = Event::create($validatedData);
+
+        // Redirect or return response
+        return redirect()->route('events.index')->with('success', 'Event created successfully!');
     }
 
     /**
