@@ -6,7 +6,7 @@
     <div class="grid grid-cols-2 mx-14 mt-10 mb-5">
         <p class="font-bold text-orange-500 text-4xl">Add Event</p>
     </div>
-    <form action="{{ route('event.create') }}" method="post">
+    <form action="{{ route('event.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mx-14 bg-gray-200 rounded-xl">
             <p class="ml-8 pt-4 font-bold text-4xl">Event</p>

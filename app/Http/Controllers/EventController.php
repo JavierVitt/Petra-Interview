@@ -6,6 +6,7 @@ use App\Models\Event;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -25,6 +26,15 @@ class EventController extends Controller
      */
     public function create(Request $request)
     {
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
         // Validate the request
         $validatedData = $request->validate([
             'namaAcara' => 'required|string|max:255',
@@ -35,8 +45,8 @@ class EventController extends Controller
             'lingkupAcara' => 'nullable|string|max:255',
             'lokasiAcara' => 'nullable|string|max:255',
             'proposalAcara' => 'nullable|file|mimes:pdf|max:2048',
-            'raRmaAcara' => 'nullable|file|mimes:xlsx,xls|max:2048',
-        ],[
+            'raRmaAcara' => 'nullable|file|mimes:xlsx,xls|max:2048'
+        ], [
             'namaAcara.max' => 'Nama Acara Terlalu Panjang',
             'tanggalCloserec.after_or_equal' => 'Tanggal Close Recruitment Harus Lebih dari Tanggal Open Recruitment',
             'tanggalAcara.after_or_equal' => 'Tanggal Acara Harus Lebih dari Tanggal Close Recruitment',
@@ -45,13 +55,23 @@ class EventController extends Controller
             'raRmaAcara.mimes' => 'Tipe File Harus Berupa XLSX atau XLS'
         ]);
 
-        // Handle file uploadsdsada
+        // Handle file
         if ($request->hasFile('proposalAcara')) {
 
-            $proposalExtension = $validatedData['proposalAcara']->getClientOriginalExtension();
-
+            $proposalExtension = $request->file('proposalAcara')->getClientOriginalExtension();
             $proposalNewName = Str::random(20) . '.' . $proposalExtension;
-            $validatedData['proposalAcara'] = $request->file('proposalAcara')->store('proposals');
+
+            // Define the final folder where the file should be stored (inside the public directory)
+            // $destinationFolder = 'proposals';
+            // $destinationPath = public_path($destinationFolder);
+
+
+            // Move the uploaded file to the public/proposals folder
+            $request->file('proposalAcara')->move(public_path('proposals'), $proposalNewName);
+            // $request->file('proposalAcara')->move($destinationPath, $proposalNewName);
+
+            // Update the validated data to point to the publicly accessible URL
+            $validatedData['proposalAcara'] = $proposalNewName;
         }
 
         if ($request->hasFile('raRmaAcara')) {
@@ -61,15 +81,7 @@ class EventController extends Controller
         $event = Event::create($validatedData);
 
         // Redirect or return response
-        return redirect()->route('events.index')->with('success', 'Event created successfully!');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return redirect()->route('manage_interview');
     }
 
     /**
