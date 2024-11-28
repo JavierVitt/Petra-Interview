@@ -61,14 +61,8 @@ class EventController extends Controller
             $proposalExtension = $request->file('proposalAcara')->getClientOriginalExtension();
             $proposalNewName = Str::random(20) . '.' . $proposalExtension;
 
-            // Define the final folder where the file should be stored (inside the public directory)
-            // $destinationFolder = 'proposals';
-            // $destinationPath = public_path($destinationFolder);
-
-
             // Move the uploaded file to the public/proposals folder
             $request->file('proposalAcara')->move(public_path('proposals'), $proposalNewName);
-            // $request->file('proposalAcara')->move($destinationPath, $proposalNewName);
 
             // Update the validated data to point to the publicly accessible URL
             $validatedData['proposalAcara'] = $proposalNewName;
