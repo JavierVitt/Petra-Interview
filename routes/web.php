@@ -15,6 +15,9 @@ Route::get('/add_event', function () {
     return view('interviewer/add_event');
 })->name('add_event');
 
+//Coba
+Route::post('/add_event', [EventController::class, 'store'])->name('event.store');
+
 Route::get('/manage_interview', function () {
     return view('interviewer/manage_interview');
 })->name('manage_interview');
