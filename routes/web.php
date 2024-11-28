@@ -20,7 +20,7 @@ Route::post('/add_event', [EventController::class, 'store'])->name('event.store'
 
 Route::get('/manage_interview', function () {
     return view('interviewer/manage_interview');
-})->name('manage_interview');
+})->name('manage_interview');   
 
 Route::get('/manage_interview_details', function () {
     return view('interviewer/manage_interview_details');

@@ -64,27 +64,10 @@
         <div class="mx-14 bg-gray-200 rounded-xl mt-8 mb-4 pb-7">
             <div class="grid grid-cols-7">
                 <p class="ml-8 py-4 font-bold text-4xl col-span-6">Divisions</p>
-                <button id="addButton" class="col-span-1 bg-black text-white m-2 mr-3 rounded-xl hover:shadow-lg">+ Add
-                    Division</button>
+                <button id="addButton" class="col-span-1 bg-black text-white m-2 mr-3 rounded-xl hover:shadow-lg" type="button">+ Add Division</button>
             </div>
             <div id="container">
-                <div class="grid grid-cols-3 ml-8 mt-4">
-                    <div>
-                        <p class="text-xl font-bold">Nama Divisi</p>
-                        <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2"
-                            placeholder="Input Nama Acara Disini">
-                    </div>
-                    <div>
-                        <p class="text-xl font-bold">Interviewer 1</p>
-                        <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2"
-                            placeholder="@john.petra.ac.id">
-                    </div>
-                    <div>
-                        <p class="text-xl font-bold">Interviewer 2</p>
-                        <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2"
-                            placeholder="@john.petra.ac.id">
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="grid grid-cols-11 text-center mb-8 mt-4">
@@ -100,25 +83,46 @@
         </div>
     </form>
     <script>
-        document.getElementById('addButton').addEventListener('click', function() {
-            const newContent = `
-          <div class="grid grid-cols-3 ml-8 mt-4">
-            <div>
-                <p class="text-xl font-bold">Nama Divisi</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="Input Nama Acara Disini">
-            </div>
-            <div>
-                <p class="text-xl font-bold">Interviewer 1</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="@john.petra.ac.id">
-            </div>
-            <div>
-                <p class="text-xl font-bold">Interviewer 2</p>
-                <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="@john.petra.ac.id">
-            </div>
-        </div>
-          `;
+        let interviewerCount = 1; // Counter for interviewer names
+        let divisionCount = 1;
+        let divisions = []; // Array to store division data
+        let interviewers = []; // Array to store interviewer names
 
+        document.getElementById('addButton').addEventListener('click', function() {
+            // Increment the counter by 2 (because two new inputs for Interviewers are added)
+
+            // Create the new division content using the updated interviewerCount
+            const newContent = `
+            <div class="grid grid-cols-3 ml-8 mt-4">
+                <div>
+                    <p class="text-xl font-bold">Nama Divisi</p>
+                    <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="Input Nama Divisi Disini" id="divisionName${divisionCount}" name="divisionName${divisionCount}" required>
+                    </div>
+                    <div>
+                        <p class="text-xl font-bold">Interviewer ${interviewerCount}</p>
+                        <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="@john.petra.ac.id" id="interviewer${interviewerCount}" name="interviewer${interviewerCount}" required> 
+                    </div>
+                    <div>
+                        <p class="text-xl font-bold">Interviewer ${interviewerCount+1}</p>
+                        <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2" placeholder="@john.petra.ac.id" id="interviewer${interviewerCount+1}" name="interviewer${interviewerCount+1}"> 
+                    </div>
+            </div>
+            <input type="hidden" name="count" value="${divisionCount}">`;
+
+            // Add new content to the container
+            interviewerCount += 2;
+            divisionCount+=1;
             document.getElementById('container').insertAdjacentHTML('beforeend', newContent);
+
+            // Push division and interviewer data into their respective arrays
+            let divisionName = document.querySelector(`#divisionName${divisionCount}`).value;
+            let interviewer1 = document.querySelector(`#interviewer${interviewerCount}`).value;
+            let interviewer2 = document.querySelector(`#interviewer${interviewerCount+1}`).value;
+
+            // Store the division name and interviewers in the arrays
+            divisions.push(divisionName);
+            interviewers.push([interviewer1, interviewer2]);
         });
     </script>
+
 @endsection

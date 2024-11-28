@@ -20,7 +20,7 @@ class Event extends Model
         'lingkupAcara',
         'lokasiAcara',
         'proposalAcara',
-        'raRmaAcara',
+        'raRmaAcara'
     ];
     
 

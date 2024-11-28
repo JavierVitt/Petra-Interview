@@ -26,7 +26,6 @@ class EventController extends Controller
      */
     public function create(Request $request)
     {
-        
     }
 
     /**
@@ -69,10 +68,40 @@ class EventController extends Controller
         }
 
         if ($request->hasFile('raRmaAcara')) {
-            $validatedData['raRmaAcara'] = $request->file('raRmaAcara')->store('ramas');
+            // $validatedData['raRmaAcara'] = $request->file('raRmaAcara')->store('ramas');
+
+            $raRmaExtension = $request->file('raRmaAcara')->getClientOriginalExtension();
+            $raRmaNewName = Str::random(20) . '.' . $raRmaExtension;
+
+            // Move the uploaded file to the public/raRmas folder
+            $request->file('raRmaAcara')->move(public_path('raRmas'), $raRmaNewName);
+
+            // Update the validated data to point to the publicly accessible URL
+            $validatedData['raRmaAcara'] = $raRmaNewName;
         }
 
-        $event = Event::create($validatedData);
+        $event = new Event();
+
+        $event->event_name = $validatedData['namaAcara'];
+        $event->event_description = $validatedData['deskripsiAcara'];
+        $event->recruitment_start_date = $validatedData['tanggalOprec'];
+        $event->recruitment_end_date = $validatedData['tanggalCloserec'];
+        $event->event_scope = $validatedData['lingkupAcara'];
+        $event->event_date = $validatedData['tanggalAcara'];
+        $event->event_location = $validatedData['lokasiAcara'];
+        $event->proposal = $validatedData['proposalAcara'];
+        $event->raRma = $validatedData['raRmaAcara'];
+        $event->status = 'ongoing';
+        $event->created_at = now();
+        $event->updated_at = now();
+
+        $event->save();
+
+        $eventId = Event::where('proposal', $validatedData['proposalAcara'])->value('id');
+
+        $divisionController = new DivisionController();
+
+        $divisionController->store($request, $eventId);
 
         // Redirect or return response
         return redirect()->route('manage_interview');
