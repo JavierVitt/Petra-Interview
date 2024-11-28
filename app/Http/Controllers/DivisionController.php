@@ -10,13 +10,6 @@ use App\Models\Interviewer;
 
 class DivisionController extends Controller
 {
-    //
-    // $table->id();
-    //         $table->string('division_name');
-    //         $table->foreignId('event_id')->constrained(
-    //             table: 'events', indexName: 'division_event_id'
-    //         );
-    //         $table->timestamps();
     public function store(Request $request, $eventId)
     {
         $count = $request['count'];
