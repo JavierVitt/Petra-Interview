@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     @vite(['resources/css/app.css', 'resources/css/custom.css'])
-    <link rel="icon" type="image/x-icon" href="{{ asset('storage/icon-header.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/icon-header.png') }}">
     {{-- Google Font: Montserrat --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

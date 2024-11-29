@@ -6,7 +6,7 @@
 @section('content')
     <div class="flex flex-row">
         <div class="flex-1 basis-4/6 justify-items-center content-center">
-            <img class="object-cover" src="{{ asset('storage/signup-banner.png') }}" alt="">
+            <img class="object-cover" src="{{ asset('assets/signup-banner.png') }}" alt="">
         </div>
 
         <div class="flex-1 basis-2/6 justify-items-center content-center">
