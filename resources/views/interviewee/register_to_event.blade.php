@@ -1,22 +1,16 @@
 @extends('templates.base_interviewee')
 
 @section('title', 'User | Manage Page')
-
 @section('content')
     <p class="mx-14 mt-10 mb-5 font-bold text-4xl text-orange-500">Register to Event</p>
-    
-    @include('partials.event_banner', [
-        'event_name' => "Welcome Grateful Generation Prodi Informatika 2024",
-        'interview_date' => "05/10/2024 - 15/10/2024",
-        'button_label' => "Daftar",
-        'button_route' => "registration_form"
-    ])
+    @foreach ($events as $event)
+        @include('partials.event_banner', [
+            'event_name' => $event['event_name'],
+            'recruitment_start_date' => $event['recruitment_start_date'],
+            'recruitment_end_date' => $event['recruitment_end_date'],
+            'button_label' => "Daftar",
+            'button_route' => route('registration_form', $event['id'])
+        ])
+    @endforeach
 
-    @include('partials.event_banner', [
-        'event_name' => "Dynamic Career Changes in the Age of Digital Reformation",
-        'interview_date' => "05/10/2024 - 15/10/2024",
-        'button_label' => "Daftar",
-        'button_route' => "registration_form"
-    ])
-    
 @endsection

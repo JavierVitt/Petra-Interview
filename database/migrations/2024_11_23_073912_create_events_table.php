@@ -12,18 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
-            $table->string('event_name');
-            $table->text('event_description')->nullable();
-            $table->date('recruitment_start_date');
-            $table->date('recruitment_end_date');
-            $table->string('event_scope')->nullable();
+            $table->id()->autoIncrement();
+            $table->string('event_name')->nullable();
+            $table->string('event_description',255)->nullable();
+            $table->date('recruitment_start_date')->nullable();
+            $table->date('recruitment_end_date')->nullable();
+            $table->string('event_scope',255)->nullable();
             $table->date('event_date')->nullable();
-            $table->string('event_location')->nullable();
-            $table->text('proposal')->nullable();
-            $table->integer('number_of_committee_members');
-            $table->integer('target_participants')->nullable();
-            $table->string('status')->default("ongoing");
+            $table->string('event_location',255)->nullable();
+            $table->string('proposal',255)->nullable();
+            $table->string('raRma',255)->nullable();
+            $table->string('status',255)->default("ongoing");
             $table->timestamps();
         });
     }

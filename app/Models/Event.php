@@ -11,6 +11,19 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'namaAcara',
+        'tanggalOprec',
+        'tanggalCloserec',
+        'deskripsiAcara',
+        'tanggalAcara',
+        'lingkupAcara',
+        'lokasiAcara',
+        'proposalAcara',
+        'raRmaAcara'
+    ];
+    
+
     protected $attributes = [
         'status' => "ongoing"
     ];

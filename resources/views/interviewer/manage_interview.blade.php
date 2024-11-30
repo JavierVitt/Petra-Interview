@@ -9,13 +9,17 @@
         'event_name' => "Welcome Grateful Generation Prodi Informatika 2024",
         'interview_date' => "05/10/2024 - 15/10/2024",
         'button_label' => "Manage",
-        'button_route' => "manage_interview_details"
+        'button_route' => "manage_interview_details",
+        'recruitment_start_date' => '2024-08-10',
+        'recruitment_end_date' => '2024-08-10'
     ])
     @include('partials.event_banner', [
         'event_name' => "Dynamic Career Changes in the Age of Digital Reformation",
         'interview_date' => "05/10/2024 - 15/10/2024",
         'button_label' => "Manage",
-        'button_route' => "manage_interview_details"
+        'button_route' => "manage_interview_details",
+        'recruitment_start_date' => '2024-08-10',
+        'recruitment_end_date' => '2024-08-10'
     ])
 
 

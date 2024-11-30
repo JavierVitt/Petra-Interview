@@ -25,6 +25,11 @@ class Division extends Model
         return $this->hasOne(Recruitment::class);
     }
 
+    public function event(): HasOne
+    {
+        return $this->hasOne(Event::class);
+    }
+
     /**
      * Get all of the interviewers for the Division
      *

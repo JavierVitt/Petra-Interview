@@ -4,59 +4,52 @@
 
 @section('content')
     <p class="mx-14 mt-10 mb-5 font-bold text-4xl text-orange-500">Registration</p>
-    <div class="bg-gray-300 mx-8 rounded-lg">
-        <p class="text-center pt-4 mb-8 font-bold text-2xl">Welcome Grateful Generation Program Studi Informatika 2025</p>
+    <div class="bg-gray-300 mx-8 p-5 rounded-lg">
+        <p class="text-center font-black mb-8 text-4xl">{{ $event['event_name'] }}</p>
         <div class="grid grid-cols-2 mx-10">
-            <div class="border-black border-r">
-                <p class="font-bold text-xl">Description</p>
-                <p class="mt-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore officiis illo ex, dolorum sequi eum
-                    praesentium libero recusandae porro tenetur pariatur. Aperiam repellat reiciendis sit voluptatibus
-                    distinctio fuga dolorem natus id deleniti sunt, et sed dolores nemo non blanditiis perferendis sapiente
-                    at!
-                    Nemo velit illo dicta, eum expedita magni maiores, ratione sint quasi doloribus delectus totam,
-                    inventore
-                    praesentium odio deleniti reprehenderit nam. Voluptas molestiae harum aliquid, sed repellat ab libero
-                    cupiditate hic maxime dolor facere, consequatur, iusto illo quaerat non aut necessitatibus quis iste.
-                    Nobis
-                    tempore eveniet recusandae nisi excepturi! Aperiam repellat assumenda corporis in amet praesentium
-                    tempore
-                    aliquid eos.</p>
-                <p class="mt-6 font-bold text-xl">Division Available</p>
+            <div class="border-black border-r p-5 pr-8">
+                <p class="font-bold text-xl mb-4">Description</p>
+                <p class="text-justify">{{ $event['event_description'] }}</p>
+                <p class="font-bold text-xl">Division Available</p>
+                
                 <div class="grid grid-cols-3 text-center">
-                    <p class="mt-6 bg-white rounded-lg py-3 mx-10 text-lg font-bold">Transkap</p>
-                    <p class="mt-6 bg-white rounded-lg py-3 mx-10 text-lg font-bold">Acara</p>
-                    <p class="mt-6 bg-white rounded-lg py-3 mx-10 text-lg font-bold">IT</p>
-                    <p class="mt-6 bg-white rounded-lg py-3 mx-10 text-lg font-bold mb-8">Creative</p>
-                    <p class="mt-6 bg-white rounded-lg py-3 mx-10 text-lg font-bold mb-8">Sekonkes</p>
-                    <p class="mt-6 bg-white rounded-lg py-3 mx-10 text-lg font-bold mb-8">Public Relation</p>
+                    @foreach ($event['divisions'] as $division)
+                        <div class="col-span-1 flex justify-center items-center px-1">
+                            <p class=" bg-white rounded-lg py-3 my-2 w-full text-lg font-bold">{{ $division['division_name'] }}</p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="grid grid-cols-2 ml-4">
-                <div>
-                    <p class="font-bold">Nama</p>
-                    <input type="text" class="rounded-lg h-10 w-11/12 px-3">
-                    <p class="font-bold mt-3">IPK</p>
-                    <input type="text" class="rounded-lg h-10 w-11/12 px-3">
-                    <p class="font-bold mt-3">Pilihan Divisi 2</p>
-                    <input type="text" class="rounded-lg h-10 w-11/12 px-3">
-                </div>
-                <div>
-                    <p class="font-bold">NRP</p>
-                    <input type="text" class="rounded-lg h-10 w-11/12 px-3">
-                    <p class="font-bold mt-3">Pilihan Divisi 1</p>
-                    <input type="text" class="rounded-lg h-10 w-11/12 px-3">
-                    <p class="font-bold mt-3">Jadwal Interview</p>
-                    <select name="" id="" class="rounded-lg h-10 w-11/12 px-3">
-                        <option value="">17.30-18.30</option>
-                        <option value="">17.30-18.30</option>
-                        <option value="">17.30-18.30</option>
-                        <option value="">17.30-18.30</option>
-                    </select>
-                    <div class="text-center pt-16">
-                        <button class="bg-black text-white px-12 py-4 mt-10 rounded-xl hover:shadow-xl">Daftar</button>
+            <div class="flex justify-center items-center p-5 pl-20">
+                <div class="grid grid-cols-2">
+                    <div>
+                        {{-- ini entar default values nya diisi pake data user yang diambil dari middleware. entar aja pas udah ngerjain middleware. --}}
+                        <p class="font-bold">Nama</p>
+                        <input type="text" class="rounded-lg h-10 w-11/12 px-3" value="{{ old('nama', 'Default Name') }}">
+                        <p class="font-bold mt-3">IPK</p>
+                        <input type="text" class="rounded-lg h-10 w-11/12 px-3" value="{{ old('ipk', '4.00') }}">
+                        <p class="font-bold mt-3">Pilihan Divisi 2</p>
+                        <input type="text" class="rounded-lg h-10 w-11/12 px-3" value="{{ old('pilihan_divisi_2', 'Default Division') }}">
+                    </div>
+                    <div>
+                        <p class="font-bold">NRP</p>
+                        <input type="text" class="rounded-lg h-10 w-11/12 px-3">
+                        <p class="font-bold mt-3">Pilihan Divisi 1</p>
+                        <input type="text" class="rounded-lg h-10 w-11/12 px-3">
+                        <p class="font-bold mt-3">Jadwal Interview</p>
+                        <select name="" id="" class="rounded-lg h-10 w-11/12 px-3">
+                            <option value="">17.30-18.30</option>
+                            <option value="">17.30-18.30</option>
+                            <option value="">17.30-18.30</option>
+                            <option value="">17.30-18.30</option>
+                        </select>
+                        <div class="text-center pt-10">
+                            <button class="bg-black text-white p-3 px-12 rounded-xl font-bold text-2xl hover:shadow-xl">Daftar</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            
         </div>
         <p class="text-gray-300">Sip</p>
     </div>

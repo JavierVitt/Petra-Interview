@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // login
@@ -9,14 +11,23 @@ Route::get('/', function () {
     return view('general/login');
 });
 
+Route::post('/',[UserController::class, 'login'])->name('login');
+
+Route::get('/sign_up',function(){
+    return view('general/signup');
+})->name('sign_up_page');
+
+Route::post('/sign_up',[UserController::class, 'create'])->name('sign_up');
+
 // interviewer
-Route::get('/add_event', function () {
-    return view('interviewer/add_event');
-})->name('add_event');
+Route::get('/add_event',[UserController::class,'showCreatePage'])->name('add_event');
+
+//Coba
+Route::post('/add_event', [EventController::class, 'store'])->name('event.store');
 
 Route::get('/manage_interview', function () {
     return view('interviewer/manage_interview');
-})->name('manage_interview');
+})->name('manage_interview');   
 
 Route::get('/manage_interview_details', function () {
     return view('interviewer/manage_interview_details');
@@ -40,13 +51,15 @@ Route::get('/do_interview', function () {
 
 
 // interviewee
-Route::get('/register_to_event', function () {
-    return view('interviewee/register_to_event');
-})->name('register_to_event');
 
-Route::get('/registration_form', function () {
-    return view('interviewee/registration_form');
-})->name('registration_form');
+// Route::get('/register_to_event', function () {
+//     return view('interviewee/register_to_event');
+// })->name('register_to_event');
+
+Route::get('/register_to_event', [EventController::class, 'index'])->name('register_to_event');
+
+Route::get('/registration_form/{event}', [EventController::class, 'show'])->name('registration_form');
+
 
 Route::get('/manage_applications', function () {
     return view('interviewee/manage_applications');

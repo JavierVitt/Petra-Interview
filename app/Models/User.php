@@ -3,10 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Committee;
-use App\Models\Interviewer;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -106,5 +102,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public static function authUsers($email, $password)
+    {
+        $userEmail = User::whereRaw('LOWER(email) = ?', [strtolower($email)])->first();
+
+        if ($userEmail) {
+            if ($userEmail && Hash::check($password, $userEmail->password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public function getIdByEmail($email)
+    {
+        return User::where('email', $email)->first()->id;
     }
 }
