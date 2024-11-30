@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // login
@@ -10,10 +11,16 @@ Route::get('/', function () {
     return view('general/login');
 });
 
+Route::post('/',[UserController::class, 'login'])->name('login');
+
+Route::get('/sign_up',function(){
+    return view('general/signup');
+})->name('sign_up_page');
+
+Route::post('/sign_up',[UserController::class, 'create'])->name('sign_up');
+
 // interviewer
-Route::get('/add_event', function () {
-    return view('interviewer/add_event');
-})->name('add_event');
+Route::get('/add_event',[UserController::class,'showCreatePage'])->name('add_event');
 
 //Coba
 Route::post('/add_event', [EventController::class, 'store'])->name('event.store');

@@ -3,6 +3,21 @@
 @section('title', 'User | Landing Page')
 
 @section('content')
+    @if ($errors->any())
+        <script>
+            // Pass errors to JavaScript
+            let errorMessages = @json($errors->all());
+            // Display SweetAlert with the error messages
+            errorMessages.forEach(message => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: message,
+                });
+            });
+        </script>
+    @endif
+
     <div class="grid grid-cols-2 mx-14 mt-10 mb-5">
         <p class="font-bold text-orange-500 text-4xl">Add Event</p>
     </div>
@@ -64,7 +79,8 @@
         <div class="mx-14 bg-gray-200 rounded-xl mt-8 mb-4 pb-7">
             <div class="grid grid-cols-7">
                 <p class="ml-8 py-4 font-bold text-4xl col-span-6">Divisions</p>
-                <button id="addButton" class="col-span-1 bg-black text-white m-2 mr-3 rounded-xl hover:shadow-lg" type="button">+ Add Division</button>
+                <button id="addButton" class="col-span-1 bg-black text-white m-2 mr-3 rounded-xl hover:shadow-lg"
+                    type="button">+ Add Division</button>
             </div>
             <div id="container">
 
@@ -111,7 +127,7 @@
 
             // Add new content to the container
             interviewerCount += 2;
-            divisionCount+=1;
+            divisionCount += 1;
             document.getElementById('container').insertAdjacentHTML('beforeend', newContent);
 
             // Push division and interviewer data into their respective arrays
@@ -124,5 +140,6 @@
             interviewers.push([interviewer1, interviewer2]);
         });
     </script>
+
 
 @endsection

@@ -101,7 +101,9 @@ class EventController extends Controller
 
         $divisionController = new DivisionController();
 
-        $divisionController->store($request, $eventId);
+        if($divisionController->store($request, $eventId)==false){
+            return redirect()->route('add_event')->withErrors(['errors'=>'Seluruh Interviewer Wajib Sign Up Terlebih Dahulu di Peinter']);
+        }
 
         // Redirect or return response
         return redirect()->route('manage_interview');

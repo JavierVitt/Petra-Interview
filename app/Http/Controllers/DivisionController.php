@@ -1,5 +1,5 @@
 <?php
-
+//Cek lagi ini, trakhir kurang bagian lek user itu hrs dicek sek 2 2 e valid apa ga e
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -41,23 +41,27 @@ class DivisionController extends Controller
             $divisionId = Division::where('division_name', $divisions[$i])->where('event_id', $eventId)->first();
             $interviewer1 = User::where('email', $interviewers[2 * $i])->first();
 
+            if (is_null($interviewer1)) {
+                return false;
+            }
             $interviewer = new Interviewer();
-
+            
             $interviewer->division_id = $divisionId->id;
             $interviewer->user_id = $interviewer1->id;
-
+            
             $interviewer->save();
-
-            if (User::where('email', $interviewers[(2 * $i) + 1]) != null) {
-                $interviewer2 = User::where('email', $interviewers[(2 * $i) + 1]);
-
+            
+            $interviewer2 = User::where('email', $interviewers[(2 * $i) + 1])->first();
+            
+            if ($interviewer2 != null) {
                 $interviewer = new Interviewer();
-
+                
                 $interviewer->division_id = $divisionId->id;
                 $interviewer->user_id = $interviewer2->id;
-
+                
                 $interviewer->save();
             }
         }
+        return true;
     }
 }
