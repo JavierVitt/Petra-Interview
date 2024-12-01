@@ -13,20 +13,20 @@ Route::get('/', function () {
     return view('general/login');
 });
 
-Route::post('/',[UserController::class, 'login'])->name('login');
+Route::post('/', [UserController::class, 'login'])->name('login');
 
-Route::get('/sign_up',function(){
+Route::get('/sign_up', function () {
     return view('general/signup');
 })->name('sign_up_page');
 
-Route::post('/sign_up',[UserController::class, 'create'])->name('sign_up');
+Route::post('/sign_up', [UserController::class, 'create'])->name('sign_up');
 
 // interviewer
-Route::get('/add_event',[UserController::class,'showCreatePage'])->name('add_event');
+Route::get('/add_event', [UserController::class, 'showCreatePage'])->name('add_event');
 
 Route::post('/add_event', [EventController::class, 'store'])->name('event.store');
 
-Route::get('/manage_interview',[InterviewController::class,'show'])->name('manage_interview');
+Route::get('/manage_interview', [InterviewController::class, 'show'])->name('manage_interview');
 
 Route::get('/manage_interview_details', function () {
     return view('interviewer/manage_interview_details');
@@ -48,6 +48,13 @@ Route::get('/do_interview', function () {
     return view('interviewer/do_interview');
 })->name('do_interview');
 
+Route::get('/set_available_schedule', function () {
+    return view('interviewer.set_available_schedule');
+})->name('set_available_schedule');
+
+Route::get('/edit_available_schedule', function () {
+    return view('interviewer.edit_available_schedule');
+})->name('edit_available_schedule');
 
 // interviewee
 
