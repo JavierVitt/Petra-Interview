@@ -7,6 +7,7 @@ use App\Models\Division;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Interviewer;
+use App\Models\Recruitment;
 
 class DivisionController extends Controller
 {
@@ -45,6 +46,10 @@ class DivisionController extends Controller
             $division->updated_at = now();
 
             $division->save();
+
+            $recruitment = new Recruitment();
+            $recruitment->division_id = Division::where('event_id',$eventId)->where('division_name',$divisions[$i])->first()->id;
+            $recruitment->save();
         }
 
         //Ini connectin interviewernya nanti yaa

@@ -27,9 +27,9 @@
                     <div>
                         {{-- ini entar default values nya diisi pake data user yang diambil dari middleware. entar aja pas udah ngerjain middleware. --}}
                         <p class="font-bold">Nama</p>
-                        <input type="text" class="rounded-lg h-10 w-11/12 px-3" value="{{ $userData['name'] }}">
+                        <input type="text" name="nama" class="rounded-lg h-10 w-11/12 px-3" value="{{ $userData['name'] }}">
                         <p class="font-bold mt-3">IPK</p>
-                        <input type="text" class="rounded-lg h-10 w-11/12 px-3" value="" required>
+                        <input type="text" name="ipk" class="rounded-lg h-10 w-11/12 px-3" value="" required>
                         <p class="font-bold mt-3">Pilihan Divisi 2</p>
                         <select name="divisi1" id="" class="rounded-lg h-10 w-11/12 px-3">
                             @foreach ($divisions as $division)
@@ -37,27 +37,27 @@
                             @endforeach
                         </select>
                         <p class="font-bold mt-3">Transkrip KHS</p>
-                        <input type="file" class="rounded-lg h-10 w-11/12 px-3 pt-1 bg-white" value="" required>
+                        <input type="file" name="khs" class="rounded-lg h-10 w-11/12 px-3 pt-1 bg-white" value="" required>
                     </div>
                     <div>
                         <p class="font-bold">NRP</p>
-                        <input type="text" class="rounded-lg h-10 w-11/12 px-3"
+                        <input type="text" class="rounded-lg h-10 w-11/12 px-3" name="nrp"
                             value="{{ Str::before($userData['email'], '@') }}">
                         <p class="font-bold mt-3">Pilihan Divisi 1</p>
-                        <select name="" id="divisi2" class="rounded-lg h-10 w-11/12 px-3">
+                        <select name="divisi2" id="divisi2" class="rounded-lg h-10 w-11/12 px-3">
                             @foreach ($divisions as $division)
                                 <option value="{{ $division['id'] }}">{{ $division['division_name'] }}</option>
                             @endforeach
                         </select>
                         <p class="font-bold mt-3">Jadwal Interview</p>
-                        <select name="" id="" class="rounded-lg h-10 w-11/12 px-3">
+                        <select name="jadwalInterview" id="" class="rounded-lg h-10 w-11/12 px-3">
                             <option value="">17.30-18.30</option>
                             <option value="">17.30-18.30</option>
                             <option value="">17.30-18.30</option>
                             <option value="">17.30-18.30</option>
                         </select>
                         <p class="font-bold mt-3">Transkrip SKKK</p>
-                        <input type="file" class="rounded-lg h-10 w-11/12 px-3 pt-1 bg-white" value="" required>
+                        <input type="file" name="skkk" class="rounded-lg h-10 w-11/12 px-3 pt-1 bg-white" value="" required>
                         <div class="text-center pt-10">
                             <button class="bg-black text-white p-3 px-12 rounded-xl font-bold text-2xl hover:shadow-xl"
                                 type="submit">Daftar</button>

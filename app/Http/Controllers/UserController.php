@@ -60,6 +60,8 @@ class UserController extends Controller
 
         $user->save();
 
+        Session::put('email',$email);
+
         return redirect()->route('add_event');
     }
     public function login(Request $request){

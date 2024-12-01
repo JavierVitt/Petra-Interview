@@ -18,7 +18,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::where('recruitment_end_date', '>', now())->orderBy('recruitment_end_date')->get();
         return view('interviewee/register_to_event', [
             'events' => $events
         ]);

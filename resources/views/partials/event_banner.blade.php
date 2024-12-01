@@ -23,6 +23,6 @@
     </div>
     
     <div class="col-span-3 flex justify-end items-center">
-        <button class="w-full py-4 text-black font-bold flex justify-center items-center rounded-xl shadow-lg text-4xl bg-peinter-yellow text-gray-100" onclick="window.location.href='{{ $button_route }}'">{{ $button_label }}</button>
+        <button class="w-full py-4 font-bold flex justify-center items-center rounded-xl shadow-lg text-4xl bg-peinter-yellow text-gray-100" onclick="window.location.href='{{ $button_route }}'">{{ $button_label }}</button>
     </div>
 </div>
