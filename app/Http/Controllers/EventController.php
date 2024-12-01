@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Division;
+use App\Models\User;
 use App\Models\Event;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
@@ -101,8 +104,8 @@ class EventController extends Controller
 
         $divisionController = new DivisionController();
 
-        if($divisionController->store($request, $eventId)==false){
-            return redirect()->route('add_event')->withErrors(['errors'=>'Seluruh Interviewer Wajib Sign Up Terlebih Dahulu di Peinter']);
+        if ($divisionController->store($request, $eventId) == false) {
+            return redirect()->route('add_event')->withErrors(['errors' => 'Seluruh Interviewer Wajib Sign Up Terlebih Dahulu di Peinter']);
         }
 
         // Redirect or return response
@@ -114,7 +117,10 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return view('interviewee/registration_form', compact('event'));
+        $email = Session::get('email');
+        $userData = User::where('email', $email)->first();
+        $divisions = Division::where('event_id',$event->id)->get();
+        return view('interviewee/registration_form', ['userData'=>$userData,'event'=>$event,'divisions'=>$divisions]);
     }
 
     /**

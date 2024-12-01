@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('registrations', function (Blueprint $table) {
-            $table->id();
-            $table->string('status');
+            $table->id()->autoIncrement();
+            $table->string('status')->default('Menunggu Interview');
             $table->decimal('ipk', 1, 1);
             $table->foreignId('recruitment_id')->constrained(
                 table: 'recruitments', indexName: 'registration_recruitment_id'
