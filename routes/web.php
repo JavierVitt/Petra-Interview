@@ -52,6 +52,8 @@ Route::get('/set_available_schedule', function () {
     return view('interviewer.set_available_schedule');
 })->name('set_available_schedule');
 
+// Route::post('/set_available_schedule',[])
+
 Route::get('/edit_available_schedule', function () {
     return view('interviewer.edit_available_schedule');
 })->name('edit_available_schedule');

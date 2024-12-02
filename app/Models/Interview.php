@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Interview extends Model
 {
@@ -29,5 +30,8 @@ class Interview extends Model
     public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
+    }
+    public function interviewer(): BelongsTo{
+        return $this->belongsTo(Interviewer::class);
     }
 }

@@ -19,4 +19,7 @@ class Interviewer extends Model
     {
         return $this->hasMany(AvailableInterviewSchedule::class);
     }
+    public function interview(): HasMany{
+        return $this->hasMany(interview::class);
+    }
 }
