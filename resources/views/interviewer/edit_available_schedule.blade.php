@@ -6,14 +6,13 @@
     <h1 class="mx-14 mt-10 mb-5 font-bold text-4xl text-orange-500">Edit Available Schedule</h1>
 
     <div class="mx-14 mt-5">
-        <!-- Form untuk Edit Jadwal -->
         <form action="{{ route('edit_available_schedule') }}" method="POST">
             @csrf
-            @method('PUT') <!-- Menandakan request sebagai PUT untuk update data -->
+            @method('PUT')
 
             <div class="mb-4">
                 <label for="schedule_date" class="block text-lg font-semibold text-gray-700">Pilih Tanggal</label>
-                <input type="date" id="schedule_date" name="schedule_date"
+                <input type="text" id="schedule_date" name="schedule_date"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg mt-2" required>
             </div>
 
@@ -35,4 +34,14 @@
             </div>
         </form>
     </div>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        flatpickr("#schedule_date", {
+            dateFormat: "Y-m-d",
+            minDate: "today",
+        });
+    </script>
 @endsection
