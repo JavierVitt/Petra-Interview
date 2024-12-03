@@ -7,6 +7,7 @@
 
     @foreach ($events as $event)
         @include('partials.event_banner', [
+            'id' => $event['id'],
             'event_name' => $event['event_name'],
             'interview_date' => $event['recruitment_end_date'] . "-" . $event['recruitment_end_date'],
             'button_label' => "Manage",

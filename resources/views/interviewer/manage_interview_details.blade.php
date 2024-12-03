@@ -3,12 +3,11 @@
 @section('title', 'User | Manage Page')
 
 @section('content')
-    
     <div class="grid grid-cols-5 mx-14 mt-10 mb-5">
         <div class=" col-span-2">
             <p class="font-bold text-4xl text-orange-500">Manage Interview</p>
         </div>
-        @include('partials.manage_interview_buttons')
+        @include('partials.manage_interview_buttons', ['eventId' => $eventId])
     </div>
     <div class="grid grid-cols-7 text-center mx-12 border-b-2 border-black text-lg">
         <div class="col-span-1 bg-gray-200 mx-3 mb-2">Foto</div>
@@ -24,6 +23,7 @@
         <div class="col-span-2 bg-gray-300 mx-3 mb-2 py-2">Rabu, 6 November 2024, 13.30 - 14.30</div>
         <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">Selasar P2</div>
         <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">WGGP 2024</div>
-        <button class="bg-peinter-yellow rounded-2xl montserratBold" onclick="window.location.href='{{ route('do_interview') }}'">Do Interview</button>
+        <button class="bg-peinter-yellow rounded-2xl montserratBold"
+            onclick="window.location.href='{{ route('do_interview') }}'">Do Interview</button>
     </div>
 @endsection

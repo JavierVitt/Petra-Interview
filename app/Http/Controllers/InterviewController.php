@@ -31,4 +31,8 @@ class InterviewController extends Controller
 
         return view('interviewer/manage_interview',['events'=>$events]);
     }
+    public function showDetails(Event $eventId){
+        Session::put('eventId',$eventId);
+        return view('interviewer/manage_interview_details',['eventId'=>$eventId]);
+    }
 }

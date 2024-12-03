@@ -20,6 +20,9 @@ return new class extends Migration
                 table: 'users', indexName: 'interviewer_user_id'
             );
             $table->boolean('is_active')->default(true);
+            $table->foreignId('event_id')->constrained(
+                table: 'events'
+            );
             $table->timestamps();
         });
     }

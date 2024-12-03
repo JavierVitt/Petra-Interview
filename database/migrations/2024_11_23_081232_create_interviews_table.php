@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('interviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('interviewer')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('interviewers')->onDelete('cascade');
             $table->date('interview_date')->nullable();
             $table->string('interview_time')->nullable();
             $table->string('interview_location')->nullable();

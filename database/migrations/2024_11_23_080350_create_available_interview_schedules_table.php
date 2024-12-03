@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('available_interview_schedules', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('schedule');
+            $table->date('interview_date')->nullable();
+            $table->String('interview_time')->nullable();
             $table->foreignId('interviewer_id')->constrained(
                 table: 'interviewers', indexName: 'available_interviewer_schedule_interviewer_id'
+            );
+            $table->foreignId('event_id')->constrained(
+                table: 'events'
             );
             $table->timestamps();
         });

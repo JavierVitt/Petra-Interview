@@ -65,6 +65,7 @@ class DivisionController extends Controller
             
             $interviewer->division_id = $divisionId->id;
             $interviewer->user_id = $interviewer1->id;
+            $interviewer->event_id = $eventId;
             
             $interviewer->save();
             
@@ -75,6 +76,7 @@ class DivisionController extends Controller
                 
                 $interviewer->division_id = $divisionId->id;
                 $interviewer->user_id = $interviewer2->id;
+                $interviewer->event_id = $eventId;
                 
                 $interviewer->save();
             }

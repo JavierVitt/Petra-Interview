@@ -3,6 +3,7 @@
 @section('title', 'User | Manage Page')
 
 @section('content')
+
     <div class="grid grid-cols-5 mx-14 mt-10 mb-5">
         <div class=" col-span-2">
             <p class="font-bold text-4xl text-orange-500">Manage Interview</p>

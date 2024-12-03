@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,31 +29,41 @@ Route::post('/add_event', [EventController::class, 'store'])->name('event.store'
 
 Route::get('/manage_interview', [InterviewController::class, 'show'])->name('manage_interview');
 
-Route::get('/manage_interview_details', function () {
-    return view('interviewer/manage_interview_details');
-})->name('manage_interview_details');
+
+
+
+// Route::get('/manage_interview_details', function () {
+//     return view('interviewer/manage_interview_details');
+// })->name('manage_interview_details');
+
+Route::get('/manage_interview_details/{event_id}', [InterviewController::class, 'showDetails'])->name('manage_interview_details');
+
+
 
 Route::get('/set_interview_questions', function () {
     return view('interviewer/set_interview_questions');
 })->name('set_interview_questions');
 
+
+// Route::get('/set_available_schedule', function () {
+//     return view('interviewer/set_available_schedule');
+// })->name('set_available_schedule');
+
 Route::get('/edit_available_schedule', function () {
     return view('interviewer/edit_available_schedule');
 })->name('edit_available_schedule');
 
-Route::get('/set_available_schedule', function () {
-    return view('interviewer/set_available_schedule');
-})->name('set_available_schedule');
+Route::get('set_available_schedule/{eventId}', [ScheduleController::class, 'showPage'])->name('set_available_schedule');
+
+Route::post('set_available_schedule/{eventId}', [ScheduleController::class, 'addSchedule'])->name('add_schedule');
 
 Route::get('/do_interview', function () {
     return view('interviewer/do_interview');
 })->name('do_interview');
 
-Route::get('/set_available_schedule', function () {
-    return view('interviewer.set_available_schedule');
-})->name('set_available_schedule');
-
-// Route::post('/set_available_schedule',[])
+// Route::get('/set_available_schedule', function () {
+//     return view('interviewer.set_available_schedule');
+// })->name('set_available_schedule');
 
 Route::get('/edit_available_schedule', function () {
     return view('interviewer.edit_available_schedule');
@@ -66,6 +77,11 @@ Route::get('/registration_form/{event}', [EventController::class, 'show'])->name
 
 Route::post('/registration_form/{event}', [RegistrationController::class, 'store'])->name('add_registraion_form');
 
+Route::post('/fetch_items',[ScheduleController::class,'fetchItems'])->name('fetch_items');
+
+Route::post('/update_time',[ScheduleController::class,'updateTime'])->name('update_time');
+
+Route::post('/upload_registration_form',[])->name('upload_registration_form');
 
 Route::get('/manage_applications', function () {
     return view('interviewee/manage_applications');

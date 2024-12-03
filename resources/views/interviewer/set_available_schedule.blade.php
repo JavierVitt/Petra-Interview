@@ -3,20 +3,34 @@
 @section('title', 'Set Available Schedule')
 
 @section('content')
-
+    @if ($errors->any())
+        <script>
+            let errorMessages = @json($errors->all());
+            errorMessages.forEach(message => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: message,
+                    confirmButtonText: "Okay"
+                });
+            });
+        </script>
+    @endif
     <div class="mx-10">
-        <form action="" method="post">
+        <form action="{{ route('set_available_schedule', ['eventId' => $eventId]) }}" method="post">
+            @csrf
             <label for="date" class="block text-sm font-medium text-gray-700 mb-2">
                 Select Date
             </label>
             <div class="relative">
-                <input type="date" id="date" class="block w-full appearance-none bg-gray-50 border border-gray-300 text-gray-700 rounded-lg py-2 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 shadow-sm transition" />
+                <input type="date" id="date" name="date"
+                    class="block w-full appearance-none bg-gray-50 border border-gray-300 text-gray-700 rounded-lg py-2 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 shadow-sm transition" />
             </div>
             <label for="date" class="block text-sm font-medium text-gray-700 mb-2">
                 Select Time
             </label>
             <div>
-                <select name="" id="">
+                <select name="time" id="">
                     <option value="08:00 - 09:00">08:00 - 09:00</option>
                     <option value="09:00 - 10:00">09:00 - 10:00</option>
                     <option value="10:00 - 11:00">10:00 - 11:00</option>
@@ -31,6 +45,7 @@
                     <option value="19:00 - 20:00">19:00 - 20:00</option>
                 </select>
             </div>
+            <input type="hidden" name="eventId" value="{{ $eventId }}">
             <button class="bg-black text-white" type="submit">Add</button>
         </form>
 
@@ -50,14 +65,19 @@
                         </tr>
                     </thead>
                     <tbody class=" text-lg">
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-3 px-6 text-center">1</td>
-                            <td class="py-3 px-6 text-center">01-12-2024</td>
-                            <td class="py-3 px-6 text-center">10:00 AM</td>
-                            <td class="py-3 px-6 text-center">
-                                <button class="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600">Delete</button>
-                            </td>
-                        </tr>
+                        @php
+                            $count = 1;
+                        @endphp
+                        @foreach ($schedules as $schedule)
+                            @include('partials.interviewer_schedule', [
+                                'count' => $count,
+                                'date' => $schedule['interview_date'],
+                                'time' => $schedule['interview_time'],
+                            ])
+                            @php
+                                $count += 1;
+                            @endphp
+                        @endforeach
                     </tbody>
                 </table>
             </div>

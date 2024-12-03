@@ -9,7 +9,8 @@
             'recruitment_start_date' => $event['recruitment_start_date'],
             'recruitment_end_date' => $event['recruitment_end_date'],
             'button_label' => "Daftar",
-            'button_route' => route('registration_form', $event['id'])
+            'id' => $event['id'],
+            'button_route' => "registration_form",
         ])
     @endforeach
 
