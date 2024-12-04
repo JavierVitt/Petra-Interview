@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Division;
@@ -39,12 +40,12 @@ class ScheduleController extends Controller
 
         $schedule->interview_date = $validation['date'];
         $schedule->interview_time = $validation['time'];
-        $schedule->interviewer_id = $interviewerId->id;
+        $schedule->interviewer_id = $interviewerId;
         $schedule->event_id = $eventId;
 
         $schedule->save();
 
-        $allSchedule = AvailableInterviewSchedule::getScheduleById($eventId, $userId);
+        $allSchedule = AvailableInterviewSchedule::getScheduleById($eventId, $interviewerId);
 
         return redirect('/set_available_schedule/'.$eventId)->with('schedules', $allSchedule);
     }
@@ -55,11 +56,12 @@ class ScheduleController extends Controller
 
         $userId = User::where('email',$userEmail)->first()->id;
 
-        $interviewerId = Interviewer::where('user_id',$userId)->where('event_id',$eventId)->first();
+        $interviewerId = Interviewer::where('user_id',$userId)->where('event_id',$eventId)->first()->id;
 
         $schedule = new AvailableInterviewSchedule();
 
-        $allSchedule = AvailableInterviewSchedule::getScheduleById($eventId, $userId);
+        $allSchedule = AvailableInterviewSchedule::getScheduleById($eventId, $interviewerId);
+
 
         return view('interviewer.set_available_schedule', [
             'schedules' => $allSchedule,
@@ -105,7 +107,7 @@ class ScheduleController extends Controller
             // Return the schedules as JSON
             return response()->json($schedules);
     
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Log the error message for debugging
             Log::error('Error fetching items: ' . $e->getMessage());
             
