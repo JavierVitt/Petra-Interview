@@ -22,8 +22,9 @@
                 </div>
             </div>
             <div class="flex justify-center items-center p-5 pl-20">
-                <form action="" method="post">
+                <form action="{{ route('upload_registration_form') }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="eventId" value="{{ $event['id'] }}">
                     <div class="grid grid-cols-2">
                         <div>
                             {{-- ini entar default values nya diisi pake data user yang diambil dari middleware. entar aja pas udah ngerjain middleware. --}}
@@ -31,8 +32,8 @@
                             <input type="text" name="nama" class="rounded-lg h-10 w-11/12 px-3"
                                 value="{{ $userData['name'] }}">
                                 <p class="font-bold mt-3">Pilihan Divisi 1</p>
-                                <select name="divisi2" id="firstDivision" class="rounded-lg h-10 w-11/12 px-3">
-                                    <option value="default">Pilihan Divisi 1</option>
+                                <select name="divisi1" id="firstDivision" class="rounded-lg h-10 w-11/12 px-3">
+                                    <option value="">Pilihan Divisi 1</option>
                                     @foreach ($divisions as $division)
                                         <option value="{{ $division['id'] }}">{{ $division['division_name'] }}</option>
                                     @endforeach
@@ -49,8 +50,8 @@
                             <input type="text" class="rounded-lg h-10 w-11/12 px-3" name="nrp"
                                 value="{{ Str::before($userData['email'], '@') }}">
                                 <p class="font-bold mt-3">Pilihan Divisi 2</p>
-                                <select name="divisi1" id="" class="rounded-lg h-10 w-11/12 px-3">
-                                    <option value="default">Pilihan Divisi 2</option>
+                                <select name="divisi2" id="" class="rounded-lg h-10 w-11/12 px-3">
+                                    <option value="">Pilihan Divisi 2</option>
                                     @foreach ($divisions as $division)
                                         <option value="{{ $division['id'] }}">{{ $division['division_name'] }}</option>
                                     @endforeach

@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('question_content')->charset('utf8mb4')->collation('utf8mb4_unicode_ci');
-            $table->integer('question_index');
-            $table->foreignId('recruitment_id')->constrained(
-                table: 'recruitments', indexName: 'question_recruitment_id'
+            $table->string('question_content',2048);
+            $table->foreignId('division_id')->constrained(
+                table: 'divisions'
             );
             $table->timestamps();
         });

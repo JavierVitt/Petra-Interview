@@ -17,6 +17,17 @@
             });
         </script>
     @endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        </script>
+    @endif
     <div class="flex flex-row">
         <div class="flex-1 basis-4/6 justify-items-center content-center">
             <img class="object-cover" src="{{ asset('assets/signup-banner.png') }}" alt="">

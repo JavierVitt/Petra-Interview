@@ -33,7 +33,7 @@ class ScheduleController extends Controller
 
         $userId = User::where('email',$userEmail)->first()->id;
 
-        $interviewerId = Interviewer::where('user_id',$userId)->where('event_id',$eventId)->first();
+        $interviewerId = Interviewer::where('user_id',$userId)->where('event_id',$eventId)->first()->id;
 
         $schedule = new AvailableInterviewSchedule();
 

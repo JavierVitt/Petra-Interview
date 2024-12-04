@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('interview_date')->nullable();
             $table->String('interview_time')->nullable();
             $table->foreignId('interviewer_id')->constrained(
-                table: 'interviewers', indexName: 'available_interviewer_schedule_interviewer_id'
+                table: 'interviewers'
             );
             $table->foreignId('event_id')->constrained(
                 table: 'events'

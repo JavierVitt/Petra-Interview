@@ -35,7 +35,7 @@ class DivisionController extends Controller
                 return false;
             }
         }
-
+        
         for ($i = 0; $i < $count; $i++) {
 
             $division = new Division();
@@ -51,9 +51,6 @@ class DivisionController extends Controller
             $recruitment->division_id = Division::where('event_id',$eventId)->where('division_name',$divisions[$i])->first()->id;
             $recruitment->save();
         }
-
-        //Ini connectin interviewernya nanti yaa
-        //Code
         for ($i = 0; $i < $count; $i++) {
             $divisionId = Division::where('division_name', $divisions[$i])->where('event_id', $eventId)->first();
             $interviewer1 = User::where('email', $interviewers[2 * $i])->first();
@@ -81,6 +78,7 @@ class DivisionController extends Controller
                 $interviewer->save();
             }
         }
+        
         return true;
     }
 }

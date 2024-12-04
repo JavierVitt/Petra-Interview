@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\InterviewController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
@@ -40,9 +41,13 @@ Route::get('/manage_interview_details/{event_id}', [InterviewController::class, 
 
 
 
-Route::get('/set_interview_questions', function () {
-    return view('interviewer/set_interview_questions');
-})->name('set_interview_questions');
+// Route::get('/set_interview_questions', function () {
+    
+// })->name('set_interview_questions');
+
+Route::get('/set_interview_question/{eventId}',[QuestionController::class,'showPage'])->name('show_question_page');
+
+Route::post('/set_interview_question/{eventId}',[QuestionController::class,'addQuestion'])->name('add_question');
 
 
 // Route::get('/set_available_schedule', function () {
@@ -81,7 +86,7 @@ Route::post('/fetch_items',[ScheduleController::class,'fetchItems'])->name('fetc
 
 Route::post('/update_time',[ScheduleController::class,'updateTime'])->name('update_time');
 
-Route::post('/upload_registration_form',[])->name('upload_registration_form');
+Route::post('/upload_registration_form',[RegistrationController::class,'uploadRegistration'])->name('upload_registration_form');
 
 Route::get('/manage_applications', function () {
     return view('interviewee/manage_applications');
