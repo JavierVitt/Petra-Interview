@@ -80,6 +80,7 @@
         $(document).ready(function () {
             $('#firstDivision').change(function () {
                 const categoryId = $(this).val();
+                const division = $('#firstDivision').val();
                 let options = '<option value="default">Select an item</option>';
                 $('#waktu').html(options);
                 if (!categoryId) {
@@ -92,7 +93,8 @@
                     type: 'POST',
                     data: {
                         'email' : {!! json_encode(Session::get('email')) !!},
-                        'event' : {{ $event['id'] }}
+                        'event' : {{ $event['id'] }},
+                        'division' : division
                     },
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     success: function (response) {
@@ -112,6 +114,7 @@
             $('#jadwal').change(function () {
                 const categoryId = $(this).val();
                 const tanggal = $('#jadwal').val();
+                const division = $('#firstDivision').val();
                 if (!categoryId) {
                     $('#jadwal').html('<option value="">Select an item</option>');
                     return;
@@ -123,7 +126,8 @@
                     data: {
                         'email' : {!! json_encode(Session::get('email')) !!},
                         'event' : {{ $event['id'] }},
-                        'tanggal' : tanggal
+                        'tanggal' : tanggal,
+                        'division' : division
                     },
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     success: function (response) {
