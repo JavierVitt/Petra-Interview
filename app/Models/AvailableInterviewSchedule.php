@@ -15,7 +15,7 @@ class AvailableInterviewSchedule extends Model
     }
 
     public static function getScheduleById($eventId, $userId){
-        $return = AvailableInterviewSchedule::where('event_id',$eventId)->where('interviewer_id',$userId)->orderBy('interview_date')->get();
+        $return = AvailableInterviewSchedule::where('event_id',$eventId)->where('interviewer_id',$userId)->orderBy('interview_date')->orderBy('interview_time')->get();
 
         return $return;
     }

@@ -37,6 +37,15 @@ class ScheduleController extends Controller
 
         $interviewerId = Interviewer::where('user_id', $userId)->where('event_id', $eventId)->first()->id;
 
+        $checkSchedule = AvailableInterviewSchedule::where('interviewer_id',$interviewerId)
+        ->where('interview_date',$validation['date'])->where('interview_time',$validation['time'])
+        ->where('event_id',$eventId)->first();
+
+        if($checkSchedule!=null){
+            return redirect()->route('set_available_schedule',['eventId' => $eventId])->withErrors(['errors' => 'Jadwal Sudah Ada']);
+        }
+
+
         $schedule = new AvailableInterviewSchedule();
 
         $schedule->interview_date = $validation['date'];
