@@ -49,10 +49,11 @@ Route::get('/set_interview_question/{eventId}',[QuestionController::class,'showP
 
 Route::post('/set_interview_question/{eventId}',[QuestionController::class,'addQuestion'])->name('add_question');
 
+Route::delete('/set_interview_question/{eventId}/{questionId}', [QuestionController::class, 'deleteQuestion'])->name('delete_question');
 
 // Route::get('/set_available_schedule', function () {
 //     return view('interviewer/set_available_schedule');
-// })->name('set_available_schedule');
+// })->name('set_available_schedule');  
 
 Route::get('/edit_available_schedule', function () {
     return view('interviewer/edit_available_schedule');

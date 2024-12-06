@@ -4,6 +4,31 @@
 
 @section('content')
 
+@if ($errors->any())
+        <script>
+            let errorMessages = @json($errors->all());
+            errorMessages.forEach(message => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: message,
+                    confirmButtonText: "Okay"
+                });
+            });
+        </script>
+    @endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    @endif
+
 @php
     $count = 1;
 @endphp
@@ -18,7 +43,7 @@
         <form action="{{ route('add_question', $eventId) }}" method="post">
             @csrf
             <p>Pertanyaan</p>
-            <input class="bg-gray-200" type="text" name="question">
+            <input class="bg-gray-200" type="text" name="question" autocomplete="off">
             <button class="bg-red-500 text-white" type="submit">Add</button>
         </form>
     </div>
@@ -30,7 +55,9 @@
         @foreach ($questions as $question)
             @include('partials.show_question',[
                 'count' => $count,
-                'question' => $question['question_content']
+                'question' => $question['question_content'],
+                'questionId' => $question['id'],
+                'eventId' => Session::get('eventId')
             ])
             @php
                 $count ++;

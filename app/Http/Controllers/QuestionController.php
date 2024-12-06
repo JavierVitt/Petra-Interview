@@ -40,6 +40,14 @@ class QuestionController extends Controller
         $question->division_id = $divisionId;
         $question->save();
 
-        return redirect("set_interview_question/$eventId");
+        return redirect("set_interview_question/$eventId")->with('success','Data Berhasil Ditambahkan');
+    }
+    public function deleteQuestion($eventId, $questionId){
+        
+        $question = Question::find($questionId);
+
+        $question->delete();
+
+        return redirect()->back()->with('success','Data Berhasil Dihapus');
     }
 }
