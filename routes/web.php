@@ -60,6 +60,11 @@ Route::get('/edit_available_schedule', function () {
 
 Route::get('set_available_schedule/{eventId}', [ScheduleController::class, 'showPage'])->name('set_available_schedule');
 
+// BUAT SG MIRIP IRGL
+Route::get('/set_available_schedule2', function () {
+    return view('interviewer/set_available_schedule2');
+})->name('edit_available_schedule2');
+
 Route::post('set_available_schedule/{eventId}', [ScheduleController::class, 'addSchedule'])->name('add_schedule');
 
 Route::get('/do_interview', function () {

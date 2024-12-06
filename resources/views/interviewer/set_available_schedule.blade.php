@@ -72,11 +72,11 @@
     <div>
         <p class="text-center font-bold text-orange-500 text-2xl">Jadwal Interview</p>
         <div class="mx-8 rounded-lg ">
-            <div class="container py-2 items-center">
+            <div class="container py-2 bg-orange-300items-center">
                 <div class="overflow-x-auto">
-                    <table class="min-w-full bg-white shadow-md rounded-lg ">
+                    <table class="min-w-full bg-orange-100 shadow-md rounded-lg ">
                         <thead>
-                            <tr class="bg-gray-200 rounded-lg uppercase text-xl leading-normal">
+                            <tr class="bg-gray-100 rounded-lg uppercase text-xl leading-normal">
                                 <th class="py-3 px-6 text-center">No</th>
                                 <th class="py-3 px-6 text-center">Tanggal</th>
                                 <th class="py-3 px-6 text-center">Jam</th>
