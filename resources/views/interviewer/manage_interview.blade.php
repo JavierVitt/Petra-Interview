@@ -4,7 +4,6 @@
 
 @section('content')
     <p class="mx-14 mt-10 mb-5 font-bold text-4xl text-orange-500">Manage Interview</p>
-
     @foreach ($events as $event)
         @include('partials.event_banner', [
             'id' => $event['id'],
@@ -16,6 +15,4 @@
             'recruitment_end_date' => $event['recruitment_end_date']
         ])
     @endforeach
-
-
 @endsection

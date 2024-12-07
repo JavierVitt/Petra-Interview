@@ -19,7 +19,12 @@ class QuestionController extends Controller
 
         $questions = Question::where('division_id',$divisionId)->get();
 
-        return view('interviewer/set_interview_questions',['eventId'=>$eventId,'questions'=>$questions]);
+        return view('interviewer.set_interview_questions', [
+            'eventId' => $eventId,
+            'questions' => $questions,
+        ]);
+
+        // return view('interviewer/set_interview_questions',['eventId'=>$eventId,'questions'=>$questions]);
     }
     public function addQuestion(Request $request, $eventId){
 

@@ -50,14 +50,6 @@ class RegistrationController extends Controller
         $division = Division::where('id', $validatedData['divisi1'])->first();
         $checkEvent = $division ? $division->event_id : null;
 
-        // echo $checkUser;
-        // echo "<br>";
-        // echo $checkEvent;
-        // echo "<br>";
-        // echo $eventId;
-        // echo "<br>";
-        // die;
-
         if($checkEvent==$eventId && isset($checkUser)){
             return redirect()->route('register_to_event')->withErrors(['Data Registrasi Anda Telah Terdaftar']);
         }
@@ -97,6 +89,7 @@ class RegistrationController extends Controller
         $registration->khs = $validatedData['khs'];
         $registration->skkk = $validatedData['skkk'];
         $registration->available_interview_id = $availableScheduleId;
+        $registration->event_id = $eventId;
 
         $registration->save();
 

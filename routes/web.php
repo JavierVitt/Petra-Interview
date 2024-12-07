@@ -68,9 +68,12 @@ Route::get('/set_available_schedule2', function () {
 
 Route::post('set_available_schedule/{eventId}', [ScheduleController::class, 'addSchedule'])->name('add_schedule');
 
-Route::get('/do_interview', function () {
-    return view('interviewer/do_interview');
-})->name('do_interview');
+// Route::get('/do_interview', function () {
+//     return view('interviewer/do_interview');
+// })->name('do_interview');
+
+Route::get('/do_interview/{eventId}/{registrationId}/{intervieweeId}', [InterviewController::class, 'doInterview'])->name('do_interview');
+
 
 // Route::get('/set_available_schedule', function () {
 //     return view('interviewer.set_available_schedule');

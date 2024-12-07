@@ -26,6 +26,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained(
                 table: 'users', indexName: 'registration_user_id'
             );
+            $table->foreignId('event_id')->constrained(
+                table: 'events'
+            );
             $table->string('khs',255)->nullable();
             $table->string('skkk',255)->nullable();
             $table->foreignId('available_interview_id')->constrained(
