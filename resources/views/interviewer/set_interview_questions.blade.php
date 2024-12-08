@@ -36,7 +36,7 @@
         <div class=" col-span-2">
             <p class="font-bold text-4xl text-orange-500">Manage Interview</p>
         </div>
-        @include('partials.manage_interview_buttons',['eventId'=>Session::get('eventId')])
+        @include('partials.manage_interview_buttons',['eventId'=>$eventId])
     </div>
     <div class="mb-5">
         {{-- Form e tlg diapikno rek --}}
@@ -57,11 +57,10 @@
                 'count' => $count,
                 'question' => $question['question_content'],
                 'questionId' => $question['id'],
-                'eventId' => Session::get('eventId')
+                'eventId' => $eventId
             ])
             @php
                 $count ++;
             @endphp
         @endforeach
-
 @endsection

@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('interviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('interviewers')->onDelete('cascade');
-            $table->date('interview_date')->nullable();
-            $table->string('interview_time')->nullable();
-            $table->string('interview_location')->nullable();
+            $table->foreignId('question_id')->constrained(table: 'questions')->onDelete('cascade');
+            $table->foreignId('registration_id')->constrained(table: 'registrations')->onDelete('cascade');
+            $table->string('answers',2048)->default('Belum Terisi');
             $table->timestamps();
         });
     }

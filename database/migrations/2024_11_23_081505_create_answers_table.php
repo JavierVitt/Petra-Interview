@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('answer_content')->charset('utf8mb4')->collation('utf8mb4_unicode_ci')->nullable();
+            $table->foreignId('question_id')->constrained(table: 'questions');
+            $table->string('answer')->charset('utf8mb4')->collation('utf8mb4_unicode_ci')->nullable();
             $table->timestamps();
         });
     }

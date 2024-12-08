@@ -74,6 +74,8 @@ Route::post('set_available_schedule/{eventId}', [ScheduleController::class, 'add
 
 Route::get('/do_interview/{eventId}/{registrationId}/{intervieweeId}', [InterviewController::class, 'doInterview'])->name('do_interview');
 
+Route::post('/save_interview_answer', [InterviewController::class, 'storeAnswer'])->name('save-answer');
+
 
 // Route::get('/set_available_schedule', function () {
 //     return view('interviewer.set_available_schedule');
@@ -97,9 +99,11 @@ Route::post('/update_time',[ScheduleController::class,'updateTime'])->name('upda
 
 Route::post('/upload_registration_form',[RegistrationController::class,'uploadRegistration'])->name('upload_registration_form');
 
-Route::get('/manage_applications', function () {
-    return view('interviewee/manage_applications');
-})->name('manage_applications');
+// Route::get('/manage_applications', function () {
+//     return view('interviewee/manage_applications');
+// })->name('manage_applications');
+
+Route::get('/manage_applications',[EventController::class,'showApplications'])->name('manage_applications');
 
 // admin
 Route::get('/manage_events', function () {

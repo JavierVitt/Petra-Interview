@@ -18,7 +18,15 @@
                 </tr>
             </thead>
             <tbody>
-                @include('partials.bla')
+                @foreach ($interviewerNames as $index => $item)
+                    @include('partials.event_application', [
+                        'count' => $index+1,
+                        'interviewerName' => $item,
+                        'jadwalInterview' => $jadwalInterviews[$index],
+                        'eventName' => $eventNames[$index],
+                        'status' => $statuss[$index],
+                    ]);
+                @endforeach
             </tbody>
         </table>
     </div>

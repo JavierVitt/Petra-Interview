@@ -23,8 +23,6 @@ class QuestionController extends Controller
             'eventId' => $eventId,
             'questions' => $questions,
         ]);
-
-        // return view('interviewer/set_interview_questions',['eventId'=>$eventId,'questions'=>$questions]);
     }
     public function addQuestion(Request $request, $eventId){
 

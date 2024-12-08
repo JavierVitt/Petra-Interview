@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Interview extends Model
 {
     use HasFactory;
+    protected $fillable = ['question_id', 'registration_id', 'answers'];
+    protected $guarded = ['id'];
 
     /**
      * Get the registration associated with the Interview

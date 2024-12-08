@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Division;
+use App\Models\AvailableInterviewSchedule;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Division;
 use Illuminate\Support\Str;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
@@ -119,8 +121,8 @@ class EventController extends Controller
     {
         $email = Session::get('email');
         $userData = User::where('email', $email)->first();
-        $divisions = Division::where('event_id',$event->id)->get();
-        return view('interviewee/registration_form', ['userData'=>$userData,'event'=>$event,'divisions'=>$divisions]);
+        $divisions = Division::where('event_id', $event->id)->get();
+        return view('interviewee/registration_form', ['userData' => $userData, 'event' => $event, 'divisions' => $divisions]);
     }
 
     /**
@@ -145,5 +147,37 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function showApplications()
+    {
+
+        $userEmail = Session::get('email');
+        $userId = User::where('email', $userEmail)->first()->id;
+
+        $registrations = Registration::where('user_id', $userId)->get();
+
+        $interviewerNames = [];
+        $jadwalInterviews = [];
+        $eventNames = [];
+        $statuss = [];
+
+        foreach ($registrations as $registration) {
+            $interviewerName = User::where('id', $registration->id)->first()->name;
+            $jadwal = AvailableInterviewSchedule::where('id',$registration->available_interview_id)->first()->interview_date . ", " . AvailableInterviewSchedule::where('id',$registration->available_interview_id)->first()->interview_time;
+            $eventName = Event::where('id',$registration->event_id)->first()->event_name;
+            $status = $registration->status;
+
+            array_push($interviewerNames, $interviewerName);
+            array_push($jadwalInterviews, $jadwal);
+            array_push($eventNames, $eventName);
+            array_push($statuss, $status);
+        }
+
+        return view('interviewee/manage_applications',[
+            'interviewerNames' => $interviewerNames,
+            'jadwalInterviews' => $jadwalInterviews,
+            'eventNames' => $eventNames,
+            'statuss' => $statuss
+        ]);
     }
 }
