@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('event_name')->nullable();
-            $table->string('event_description',255)->nullable();
+            $table->string('event_description', 255)->nullable();
             $table->date('recruitment_start_date')->nullable();
             $table->date('recruitment_end_date')->nullable();
             $table->string('event_scope',255)->nullable();
