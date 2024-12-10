@@ -70,12 +70,13 @@ class UserController extends Controller
         return redirect()->route('add_event');
     }
     public function login(Request $request){
-        Session::put('email',$request->email);
-
-        if (Str::endsWith($request->email, '@admin')||$request->password=='admin') {
+        
+        if (Str::endsWith($request->email, '@admin')&&$request->password=='admin') {
+            Session::put('admin', $request->email);
             return redirect()->route('manage_events');
         }
-        
+
+        Session::put('email',$request->email);
         $email = $request->email;
         $password = $request->password;
         $user = new User();

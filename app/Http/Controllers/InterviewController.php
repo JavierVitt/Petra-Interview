@@ -45,7 +45,7 @@ class InterviewController extends Controller
 
         // Foto, Interviewee, Jadwal(Tanggal dan Jam), Lokasi, KHS, SKKK
 
-        $registrations = Registration::where('interviewer_id', $interviewerId)->get();
+        $registrations = Registration::where('interviewer_id', $interviewerId)->where('event_id',$eventId)->get();
 
         $registrationId = [];
         $fotos = [];
@@ -101,7 +101,11 @@ class InterviewController extends Controller
             $interview = new Interview();
             $interview->registration_id = $registrationId;
 
-            $checkInterview = Interview::where('question_id', $questionForFirstDivision->id)->where('registration_id', $registrationId)->first()->id;
+            $checkInterview = Interview::where('question_id', $questionForFirstDivision->id)->where('registration_id', $registrationId)->first();
+
+            // if($checkInterview!=null){
+            //     $idInterview = $checkInterview->id;
+            // }
 
             $interview->question_id = $questionForFirstDivision->id;
             if ($checkInterview == null) {
@@ -125,8 +129,12 @@ class InterviewController extends Controller
             }
         }
 
+        $listOfSecondDivisionQuestions = [];
+
         $listOfFirstDivisionQuestions = Question::where('division_id', $firstDivisionId)->get();
-        $listOfSecondDivisionQuestions = Question::where('division_id', $secondDivisionId)->get();
+        if($secondDivisionId != $firstDivisionId){
+            $listOfSecondDivisionQuestions = Question::where('division_id', $secondDivisionId)->get();
+        }
 
 
 

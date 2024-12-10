@@ -74,6 +74,8 @@ Route::get('/set_available_schedule2', function () {
 
 Route::post('set_available_schedule/{eventId}', [ScheduleController::class, 'addSchedule'])->name('add_schedule');
 
+Route::delete('set_available_schedule/{eventId}/{availableId}',[ScheduleController::class, 'deleteSchedule'])->name('delete_schedule');
+
 // Route::get('/do_interview', function () {
 //     return view('interviewer/do_interview');
 // })->name('do_interview');

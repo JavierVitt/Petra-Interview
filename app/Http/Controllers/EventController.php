@@ -6,6 +6,7 @@ use App\Models\AvailableInterviewSchedule;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Division;
+use App\Models\Interviewer;
 use Illuminate\Support\Str;
 use App\Models\Registration;
 use Illuminate\Http\Request;
@@ -20,7 +21,32 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::where('recruitment_end_date', '>', now())->where('status', 1)->orderBy('recruitment_end_date')->get();
+        $userId = User::where('email',Session::get('email'))->first()->id;
+
+        $listOfInterviewers = Interviewer::where('user_id',$userId)->get();
+
+        $eventLists = [];
+
+        foreach ($listOfInterviewers as $listOfInterviewer) {
+            $BPHKOfInterviewers = $listOfInterviewer->user_id;
+            if($BPHKOfInterviewers == $userId){
+                array_push($eventLists, $listOfInterviewer->event_id);
+            }
+        }
+
+        $events = Event::when(!empty($eventLists), function ($query) use ($eventLists) {
+            return $query->whereNotIn('id', $eventLists);
+        })
+        ->where('recruitment_end_date', '>', now())
+        ->where('status', 1)
+        ->orderBy('recruitment_end_date')
+        ->get();
+
+        // $events = Event::whereNotIn('event_id',$eventLists)->where('recruitment_end_date', '>', now())->where('status', 1)->orderBy('recruitment_end_date')->get();
+
+        // $users = User::whereNotIn('event_id', $eventId)->get();
+
+        // $events = Event::where('recruitment_end_date', '>', now())->where('status', 1)->orderBy('recruitment_end_date')->get();
         return view('interviewee/register_to_event', [
             'events' => $events
         ]);
@@ -40,7 +66,7 @@ class EventController extends Controller
     {
         //
 
-        $chairmanId = User::where('email',Session::get('email'))->first()->id;
+        $chairmanId = User::where('email', Session::get('email'))->first()->id;
         // Validate the request
         $validatedData = $request->validate([
             'namaAcara' => 'required|string|max:255',
@@ -99,7 +125,7 @@ class EventController extends Controller
         $event->event_location = $validatedData['lokasiAcara'];
         $event->proposal = $validatedData['proposalAcara'];
         $event->raRma = $validatedData['raRmaAcara'];
-        $event->status = 'ongoing';
+        $event->status = 0;
         $event->created_at = now();
         $event->updated_at = now();
 
@@ -128,19 +154,18 @@ class EventController extends Controller
         return view('interviewee/registration_form', ['userData' => $userData, 'event' => $event, 'divisions' => $divisions]);
     }
 
-    public function manage ()
+    public function manage()
     {
         $events = Event::all();
         $applicants = [];
 
-        foreach ($events as $event) 
-        {
+        foreach ($events as $event) {
             array_push($applicants, User::where('id', $event->chairman_id)->first()->name);
         }
         return view('/admin/manage_events', ['events' => $events, 'applicants' => $applicants]);
     }
 
-    public function details ($eventId)
+    public function details($eventId)
     {
         $event = Event::where('id', $eventId)->first();
 
@@ -151,7 +176,7 @@ class EventController extends Controller
         return view('admin/event_details', ['event' => $event, 'chairman' => $chairman, 'divisions' => $divisions]);
     }
 
-    public function acceptEvent ($eventId) 
+    public function acceptEvent($eventId)
     {
         $event = Event::where('id', $eventId)->first();
         $event->status = 1;
@@ -159,7 +184,7 @@ class EventController extends Controller
         return redirect()->route('manage_events');
     }
 
-    public function rejectEvent ($eventId)
+    public function rejectEvent($eventId)
     {
         $event = Event::where('id', $eventId)->first();
         $event->status = 2;
@@ -205,8 +230,8 @@ class EventController extends Controller
 
         foreach ($registrations as $registration) {
             $interviewerName = User::where('id', $registration->id)->first()->name;
-            $jadwal = AvailableInterviewSchedule::where('id',$registration->available_interview_id)->first()->interview_date . ", " . AvailableInterviewSchedule::where('id',$registration->available_interview_id)->first()->interview_time;
-            $eventName = Event::where('id',$registration->event_id)->first()->event_name;
+            $jadwal = AvailableInterviewSchedule::where('id', $registration->available_interview_id)->first()->interview_date . ", " . AvailableInterviewSchedule::where('id', $registration->available_interview_id)->first()->interview_time;
+            $eventName = Event::where('id', $registration->event_id)->first()->event_name;
             $status = $registration->status;
 
             array_push($interviewerNames, $interviewerName);
@@ -215,7 +240,7 @@ class EventController extends Controller
             array_push($statuss, $status);
         }
 
-        return view('interviewee/manage_applications',[
+        return view('interviewee/manage_applications', [
             'interviewerNames' => $interviewerNames,
             'jadwalInterviews' => $jadwalInterviews,
             'eventNames' => $eventNames,

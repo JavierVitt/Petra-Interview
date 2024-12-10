@@ -46,7 +46,7 @@
                         class="text-blue-500">Download Proposal</a>
                     </div>
                     <div class="mt-4">
-                        <strong class="text-gray-600">RA-RMA (PDF):</strong>
+                        <strong class="text-gray-600">RA-RMA (XLS):</strong>
                         <a href="{{ asset('raRmas/'.$event->raRma) }}" target="_blank"
                         class="text-blue-500">Download RA-RMA</a>
                     </div>

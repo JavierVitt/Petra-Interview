@@ -3,19 +3,30 @@
 @section('title', 'Set Available Schedule')
 
 @section('content')
-    @if ($errors->any())
-        <script>
-            let errorMessages = @json($errors->all());
-            errorMessages.forEach(message => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: message,
-                    confirmButtonText: "Okay"
-                });
-            });
-        </script>
-    @endif
+@if ($errors->any())
+<script>
+    let errorMessages = @json($errors->all());
+    errorMessages.forEach(message => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+            confirmButtonText: "Okay"
+        });
+    });
+</script>
+@endif
+@if (session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: '{{ session('success') }}',
+        showConfirmButton: false,
+        timer: 3000
+    });
+</script>
+@endif
 
     <div class="grid grid-cols-2 mx-14 mt-1 mb-1">
         <p class="font-bold text-orange-500 text-4xl">Set Available Schedule</p>
@@ -87,8 +98,10 @@
                             @php
                                 $count = 1;
                             @endphp
-                            @foreach ($schedules as $schedule)
+                            @foreach ($schedules as $index => $schedule)
                                 @include('partials.interviewer_schedule', [
+                                    'id' => $schedule['id'],
+                                    'check' => $checkSchedules[$index],
                                     'count' => $count,
                                     'date' => $schedule['interview_date'],
                                     'time' => $schedule['interview_time'],

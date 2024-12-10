@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Models\AvailableInterviewSchedule;
+use App\Models\Registration;
 
 class ScheduleController extends Controller
 {
@@ -73,9 +74,25 @@ class ScheduleController extends Controller
 
         $allSchedule = AvailableInterviewSchedule::getScheduleById($eventId, $interviewerId);
 
+        $checkId = [];
+
+        foreach ($allSchedule as $schedule) {
+            $scheduleId = $schedule->id;
+
+            $check = Registration::where('available_interview_id',$scheduleId)->first();
+
+            if ($check!=null) {
+                array_push($checkId,1);
+            }else{
+                array_push($checkId,0);
+            }
+            
+        }
+
 
         return view('interviewer.set_available_schedule', [
             'schedules' => $allSchedule,
+            'checkSchedules' => $checkId,
             'eventId' => $eventId,
         ]);
     }
@@ -145,5 +162,12 @@ class ScheduleController extends Controller
         $times = AvailableInterviewSchedule::where('interviewer_id', $interviewer)->where('event_id', $eventId)->where('interview_date', $tanggal)->get();
 
         return response()->json($times);
+    }
+    public function deleteSchedule($eventId, $availableId){
+        $deleteTarget = AvailableInterviewSchedule::where('id',$availableId)->first();
+
+        $deleteTarget->delete();
+        
+        return redirect()->back()->with('success','Jadwal berhasil di hapus');
     }
 }

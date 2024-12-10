@@ -28,7 +28,6 @@
         });
         </script>
     @endif
-
     <div class="flex flex-row">
         <div class="flex-1 basis-4/6">
             <img class="object-cover" src="{{ asset('assets/signup-banner.png') }}" alt="">

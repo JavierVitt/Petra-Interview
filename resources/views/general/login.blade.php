@@ -36,11 +36,6 @@
             <form action="{{ route('login') }}" method="post">
                 @csrf
 
-                {{-- <div class="">
-                    <h1 class="montserratExtraBold text-4xl">Sign Up</h1>
-                    <p class="text-sm montserratLight">Please sign up to continue.</p>
-                </div> --}}
-
                 <div class="w-full max-w-xs">
                     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <h1 class="montserratExtraBold text-4xl text-center mb-5">Login</h1>
