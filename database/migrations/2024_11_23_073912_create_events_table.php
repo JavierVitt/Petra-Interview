@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id()->autoIncrement();
+            $table->foreignId('chairman_id')->constrained(table:'users')->onDelete('cascade');
             $table->string('event_name')->nullable();
             $table->string('event_description', 255)->nullable();
             $table->date('recruitment_start_date')->nullable();

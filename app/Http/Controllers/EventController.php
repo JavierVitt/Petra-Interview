@@ -39,6 +39,8 @@ class EventController extends Controller
     public function store(Request $request)
     {
         //
+
+        $chairmanId = User::where('email',Session::get('email'))->first()->id;
         // Validate the request
         $validatedData = $request->validate([
             'namaAcara' => 'required|string|max:255',
@@ -87,6 +89,7 @@ class EventController extends Controller
 
         $event = new Event();
 
+        $event->chairman_id = $chairmanId;
         $event->event_name = $validatedData['namaAcara'];
         $event->event_description = $validatedData['deskripsiAcara'];
         $event->recruitment_start_date = $validatedData['tanggalOprec'];
@@ -123,6 +126,17 @@ class EventController extends Controller
         $userData = User::where('email', $email)->first();
         $divisions = Division::where('event_id', $event->id)->get();
         return view('interviewee/registration_form', ['userData' => $userData, 'event' => $event, 'divisions' => $divisions]);
+    }
+
+    public function details ($eventId)
+    {
+        $event = Event::where('id', $eventId)->first();
+
+        $chairmanId = $event->chairman_id;
+        $chairman = User::where('id', $chairmanId)->first()->name;
+
+        $divisions = Division::where('event_id', $eventId)->get();
+        return view('admin/event_details', ['event' => $event, 'chairman' => $chairman, 'divisions' => $divisions]);
     }
 
     /**

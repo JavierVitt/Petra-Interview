@@ -13,40 +13,40 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <strong class="text-gray-600">Nama Acara:</strong>
-                    <p class="text-gray-700">IRGL 2025</p>
+                    <p class="text-gray-700">{{ $event->event_name }}</p>
                 </div>
                 <div>
                     <strong class="text-gray-600">Tanggal Open Recruitment:</strong>
-                    <p class="text-gray-700">2025-05-01</p>
+                    <p class="text-gray-700">{{ $event->recruitment_start_date }}</p>
                 </div>
                 <div>
                     <strong class="text-gray-600">Tanggal Close Recruitment:</strong>
-                    <p class="text-gray-700">2025-06-01</p>
+                    <p class="text-gray-700">{{ $event->recruitment_end_date }}</p>
                 </div>
                 <div>
                     <strong class="text-gray-600">Tanggal Acara:</strong>
-                    <p class="text-gray-700">2025-07-15</p>
+                    <p class="text-gray-700">{{ $event->event_date }}</p>
                 </div>
                 <div>
                     <strong class="text-gray-600">Lingkup Acara:</strong>
-                    <p class="text-gray-700">National Competition</p>
+                    <p class="text-gray-700">{{ $event->event_scope }}</p>
                 </div>
                 <div>
                     <strong class="text-gray-600">Lokasi Acara:</strong>
-                    <p class="text-gray-700">University Auditorium</p>
+                    <p class="text-gray-700">{{ $event->event_location }}</p>
                 </div>
                 <div>
                     <strong class="text-gray-600">Ketua Acara:</strong>
-                    <p class="text-gray-700">Budi Doremi</p>
+                    <p class="text-gray-700">{{ $chairman }}</p>
                 </div>
                 <div>
                     <strong class="text-gray-600">Proposal (PDF):</strong>
-                    <a href="{{ asset('storage/proposals/irgl2025_proposal.pdf') }}" target="_blank"
+                    <a href="{{ asset('proposals/'.$event->proposal) }}" target="_blank"
                         class="text-blue-500">Download Proposal</a>
                 </div>
                 <div>
                     <strong class="text-gray-600">RA-RMA (PDF):</strong>
-                    <a href="{{ asset('storage/ra_rma/irgl2025_ra_rma.pdf') }}" target="_blank"
+                    <a href="{{ asset('raRmas/'.$event->raRma) }}" target="_blank"
                         class="text-blue-500">Download RA-RMA</a>
                 </div>
             </div>
@@ -54,11 +54,9 @@
             <!-- Divisions Section -->
             <h3 class="text-xl font-semibold text-gray-700 mt-8 mb-4">Divisions Available</h3>
             <ul class="list-disc pl-6 space-y-2">
-                <li class="text-gray-700">Marketing</li>
-                <li class="text-gray-700">Logistics</li>
-                <li class="text-gray-700">Documentation</li>
-                <li class="text-gray-700">Public Relations</li>
-                <li class="text-gray-700">Sponsorship</li>
+                @foreach ($divisions as $div)
+                <li class="text-gray-700">{{ $div->division_name }}</li>
+                @endforeach
             </ul>
 
             <!-- Back Button Section -->

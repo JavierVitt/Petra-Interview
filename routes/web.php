@@ -110,6 +110,8 @@ Route::get('/manage_events', function () {
     return view('admin/manage_events');
 })->name('manage_events');
 
-Route::get('/event_details', function () {
-    return view('admin/event_details');
-})->name('detail_event');
+// Route::get('/event_details', function () {
+//     return view('admin/event_details');
+// })->name('detail_event');
+
+Route::get('/event_details/{event_id}', [EventController::class, 'details'])->name('detail_event');
