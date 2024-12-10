@@ -30,14 +30,21 @@
                         </td>
                         @if ($event->status == 0)
                         <td class="border border-gray-300 px-4 py-2 text-center">
-                            <button onclick="window.location.href='{{ route('detail_event',['event_id' => $event->id]) }}'"
-                                class="bg-green-500 text-white font-bold px-4 py-2 rounded-lg">
-                                <i class="fa-solid fa-check"></i>
-                            </button>
-                            <button onclick="window.location.href='{{ route('detail_event',['event_id' => $event->id]) }}'"
-                                class="bg-red-500 text-white font-bold px-4 py-2 rounded-lg">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
+                            <div class="flex justify-center space-x-2">
+                                <form action="{{ route('acc_event',['event_id' => $event->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="bg-green-500 text-white font-bold px-4 py-2 rounded-lg">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </form>
+                                
+                                <form action="{{ route('rej_event',['event_id' => $event->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="bg-red-500 text-white font-bold px-4 py-2 rounded-lg">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                         @else
                             @if ($event->status == 1)

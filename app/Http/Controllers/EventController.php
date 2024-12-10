@@ -151,6 +151,38 @@ class EventController extends Controller
         return view('admin/event_details', ['event' => $event, 'chairman' => $chairman, 'divisions' => $divisions]);
     }
 
+    public function acceptEvent ($eventId) 
+    {
+        $event = Event::where('id', $eventId)->first();
+        $event->status = 1;
+        $event->save();
+
+        $events = Event::all();
+        $applicants = [];
+
+        foreach ($events as $event) 
+        {
+            array_push($applicants, User::where('id', $event->chairman_id)->first()->name);
+        }
+        return view('/admin/manage_events', ['events' => $events, 'applicants' => $applicants]);
+    }
+
+    public function rejectEvent ($eventId)
+    {
+        $event = Event::where('id', $eventId)->first();
+        $event->status = 2;
+        $event->save();
+
+        $events = Event::all();
+        $applicants = [];
+
+        foreach ($events as $event) 
+        {
+            array_push($applicants, User::where('id', $event->chairman_id)->first()->name);
+        }
+        return view('/admin/manage_events', ['events' => $events, 'applicants' => $applicants]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
