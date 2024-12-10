@@ -66,6 +66,12 @@
 
 <body>
     @include('navbar.navbar_interviewer')
+    @if (!Session::has('email')) 
+        @php
+            header("Location: " . route('redirect_login'));
+            exit();
+        @endphp
+    @endif
     @yield('content')
 </body>
 

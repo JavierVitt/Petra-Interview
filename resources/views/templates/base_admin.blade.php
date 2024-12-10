@@ -22,6 +22,12 @@
 
     {{-- Content Section --}}
     <div class="container mx-auto px-6 py-8">
+        @if (!Session::has('admin')) 
+            @php
+                header("Location: " . route('redirect_login'));
+                exit();
+            @endphp
+        @endif
         @yield('content')
     </div>
 </body>

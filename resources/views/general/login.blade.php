@@ -69,9 +69,9 @@
                                 type="submit">
                                 Log in
                             </button>
-                            {{-- <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                            Forgot Password?
-                        </a> --}}
+                            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/sign_up">
+                            First Timer?
+                        </a>
                         </div>
                     </form>
                     <p class="text-center text-gray-500 text-xs">

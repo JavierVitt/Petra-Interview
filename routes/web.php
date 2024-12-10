@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\InterviewController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\RegistrationController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\InterviewController;
+use App\Http\Controllers\RegistrationController;
 
 // login
 Route::get('/', function () {
     // return view('interviewer/do_interview');
     // return view('interviewee/registration_form');
     return view('general/login');
-});
+})->name('redirect_login');
 
 Route::post('/', [UserController::class, 'login'])->name('login');
 
@@ -22,6 +23,11 @@ Route::get('/sign_up', function () {
 })->name('sign_up_page');
 
 Route::post('/sign_up', [UserController::class, 'create'])->name('sign_up');
+
+Route::post('/logout', function () {
+    Session::flush(); 
+    return redirect('/');
+})->name('logout.session');
 
 // interviewer
 Route::get('/add_event', [UserController::class, 'showCreatePage'])->name('add_event');

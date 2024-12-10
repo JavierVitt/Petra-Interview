@@ -60,6 +60,13 @@
     
 </head>
 <body>
+    @if (!Session::has('email')) 
+        @php
+            header("Location: " . route('redirect_login'));
+            exit();
+        @endphp
+    @endif
+
     @include('navbar.navbar_interviewee')
     @yield('content')
 </body>

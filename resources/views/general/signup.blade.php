@@ -95,9 +95,9 @@
                                 type="submit">
                                 Sign Up
                             </button>
-                            {{-- <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                            Forgot Password?
-                        </a> --}}
+                            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/">
+                            Have an account?
+                        </a>
                         </div>
                     </form>
                     <p class="text-center text-gray-500 text-xs">

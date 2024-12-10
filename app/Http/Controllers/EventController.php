@@ -20,7 +20,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::where('recruitment_end_date', '>', now())->orderBy('recruitment_end_date')->get();
+        $events = Event::where('recruitment_end_date', '>', now())->where('status', 1)->orderBy('recruitment_end_date')->get();
         return view('interviewee/register_to_event', [
             'events' => $events
         ]);
@@ -156,15 +156,7 @@ class EventController extends Controller
         $event = Event::where('id', $eventId)->first();
         $event->status = 1;
         $event->save();
-
-        $events = Event::all();
-        $applicants = [];
-
-        foreach ($events as $event) 
-        {
-            array_push($applicants, User::where('id', $event->chairman_id)->first()->name);
-        }
-        return view('/admin/manage_events', ['events' => $events, 'applicants' => $applicants]);
+        return redirect()->route('manage_events');
     }
 
     public function rejectEvent ($eventId)
@@ -172,15 +164,7 @@ class EventController extends Controller
         $event = Event::where('id', $eventId)->first();
         $event->status = 2;
         $event->save();
-
-        $events = Event::all();
-        $applicants = [];
-
-        foreach ($events as $event) 
-        {
-            array_push($applicants, User::where('id', $event->chairman_id)->first()->name);
-        }
-        return view('/admin/manage_events', ['events' => $events, 'applicants' => $applicants]);
+        return redirect()->route('manage_events');
     }
 
     /**

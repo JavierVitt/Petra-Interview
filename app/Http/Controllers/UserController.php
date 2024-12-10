@@ -30,12 +30,13 @@ class UserController extends Controller
             'profilePicture.mimes' => 'Tipe Foto Harus Berupa JPG/PNG/JPEG',
             'profilePicture.max' => 'Ukuran Foto Terlalu Besar'
         ]);
-
+        $email = $request->email;
+        
         if (Str::endsWith($request['email'], '@admin')||$request->password=='admin') {
+            Session::put('admin',$email);
             return redirect()->route('manage_events');
         }
 
-        $email = $request->email;
         $password = $request->password;
 
         $hashedPassword = Hash::make($password);
