@@ -16,6 +16,10 @@
                     <p class="text-gray-700">{{ $event->event_name }}</p>
                 </div>
                 <div>
+                    <strong class="text-gray-600">Ketua Acara:</strong>
+                    <p class="text-gray-700">{{ $chairman }}</p>
+                </div>
+                <div>
                     <strong class="text-gray-600">Tanggal Open Recruitment:</strong>
                     <p class="text-gray-700">{{ $event->recruitment_start_date }}</p>
                 </div>
@@ -36,18 +40,16 @@
                     <p class="text-gray-700">{{ $event->event_location }}</p>
                 </div>
                 <div>
-                    <strong class="text-gray-600">Ketua Acara:</strong>
-                    <p class="text-gray-700">{{ $chairman }}</p>
-                </div>
-                <div>
-                    <strong class="text-gray-600">Proposal (PDF):</strong>
-                    <a href="{{ asset('proposals/'.$event->proposal) }}" target="_blank"
+                    <div>
+                        <strong class="text-gray-600">Proposal (PDF):</strong>
+                        <a href="{{ asset('proposals/'.$event->proposal) }}" target="_blank"
                         class="text-blue-500">Download Proposal</a>
-                </div>
-                <div>
-                    <strong class="text-gray-600">RA-RMA (PDF):</strong>
-                    <a href="{{ asset('raRmas/'.$event->raRma) }}" target="_blank"
+                    </div>
+                    <div class="mt-4">
+                        <strong class="text-gray-600">RA-RMA (PDF):</strong>
+                        <a href="{{ asset('raRmas/'.$event->raRma) }}" target="_blank"
                         class="text-blue-500">Download RA-RMA</a>
+                    </div>
                 </div>
             </div>
 

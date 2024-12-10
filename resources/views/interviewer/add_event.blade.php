@@ -53,8 +53,16 @@
                     <input type="date" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2 px-2"
                         placeholder="Input Tanggal Acara Disini" required name="tanggalAcara">
                     <p class="text-xl font-bold mt-3">Lingkup Acara</p>
-                    <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2  px-2"
-                        placeholder="Input Lingkup Acara Disini" name="lingkupAcara" required>
+                    <select name="lingkupAcara" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2  px-2">
+                        <option value="Intern IC">Intern IC</option>
+                        <option value="Fakultas">Fakultas</option>
+                        <option value="Universitas">Universitas</option>
+                        <option value="Regional">Regional</option>
+                        <option value="Nasional">Nasional</option>
+                        <option value="Internasional">Internasional</option>
+                    </select>
+                    {{-- <input type="text" class="rounded-md bg-gray-300 w-11/12 h-10 mt-2  px-2"
+                        placeholder="Input Lingkup Acara Disini" name="lingkupAcara" required> --}}
                 </div>
             </div>
             <div class="grid grid-cols-3 ml-8 pb-7">

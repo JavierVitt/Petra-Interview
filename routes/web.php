@@ -106,12 +106,10 @@ Route::post('/upload_registration_form',[RegistrationController::class,'uploadRe
 Route::get('/manage_applications',[EventController::class,'showApplications'])->name('manage_applications');
 
 // admin
-Route::get('/manage_events', function () {
-    return view('admin/manage_events');
-})->name('manage_events');
+// Route::get('/manage_events', function () {
+//     return view('admin/manage_events');
+// })->name('manage_events');
 
-// Route::get('/event_details', function () {
-//     return view('admin/event_details');
-// })->name('detail_event');
+Route::get('/manage_events', [EventController::class, 'manage'])->name('manage_events');
 
 Route::get('/event_details/{event_id}', [EventController::class, 'details'])->name('detail_event');

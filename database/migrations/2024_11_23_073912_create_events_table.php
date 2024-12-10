@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('event_location',255)->nullable();
             $table->string('proposal',255)->nullable();
             $table->string('raRma',255)->nullable();
-            $table->string('status',255)->default("ongoing");
+            $table->integer('status',1)->default('0');
             $table->timestamps();
         });
     }

@@ -128,6 +128,18 @@ class EventController extends Controller
         return view('interviewee/registration_form', ['userData' => $userData, 'event' => $event, 'divisions' => $divisions]);
     }
 
+    public function manage ()
+    {
+        $events = Event::all();
+        $applicants = [];
+
+        foreach ($events as $event) 
+        {
+            array_push($applicants, User::where('id', $event->chairman_id)->first()->name);
+        }
+        return view('/admin/manage_events', ['events' => $events, 'applicants' => $applicants]);
+    }
+
     public function details ($eventId)
     {
         $event = Event::where('id', $eventId)->first();
