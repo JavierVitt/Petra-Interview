@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if ($errors->any())
+    @if ($errors->any())
         <script>
             let errorMessages = @json($errors->all());
             errorMessages.forEach(message => {
@@ -29,14 +29,16 @@
         </script>
     @endif
 
-@php
-    $count = 1;
-@endphp
+    @php
+        $count = 1;
+    @endphp
     <div class="grid grid-cols-5 mx-14 mt-10 mb-5">
         <div class=" col-span-2">
             <p class="font-bold text-4xl text-orange-500">Manage Interview</p>
         </div>
-        @include('partials.manage_interview_buttons',['eventId'=>$eventId])
+        <div class="col-span-3 flex items-center justify-center">
+            @include('partials.manage_interview_buttons', ['eventId' => $eventId])
+        </div>
     </div>
     <div class="mb-5">
         {{-- Form e tlg diapikno rek --}}
@@ -52,15 +54,15 @@
         <div class="col-span-4 bg-gray-200 mx-3 mb-2">Pertanyaan</div>
         <div class="col-span-1 bg-gray-200 mx-3 mb-2">Action</div>
     </div>
-        @foreach ($questions as $question)
-            @include('partials.show_question',[
-                'count' => $count,
-                'question' => $question['question_content'],
-                'questionId' => $question['id'],
-                'eventId' => $eventId
-            ])
-            @php
-                $count ++;
-            @endphp
-        @endforeach
+    @foreach ($questions as $question)
+        @include('partials.show_question', [
+            'count' => $count,
+            'question' => $question['question_content'],
+            'questionId' => $question['id'],
+            'eventId' => $eventId,
+        ])
+        @php
+            $count++;
+        @endphp
+    @endforeach
 @endsection

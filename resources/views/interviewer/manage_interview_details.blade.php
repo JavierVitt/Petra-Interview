@@ -7,7 +7,9 @@
         <div class=" col-span-2">
             <p class="font-bold text-4xl text-orange-500">Manage Interview</p>
         </div>
-        @include('partials.manage_interview_buttons', ['eventId' => $eventId])
+        <div class="col-span-3 flex items-center justify-center">
+            @include('partials.manage_interview_buttons', ['eventId' => $eventId])
+        </div>
     </div>
     <div class="grid grid-cols-8 text-center align-middle mx-12 border-b-2 border-black text-lg">
         <div class="col-span-1 bg-gray-200 mx-3 mb-2">Foto</div>
