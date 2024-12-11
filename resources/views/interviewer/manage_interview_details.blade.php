@@ -51,7 +51,8 @@
         <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
                 href="{{ asset('skkks/' . $skkks[$index]) }}" target="_blank">View</a></div>
         <div class="col-span-1"> {{-- Button INFO/ACC/REJECT --}}
-            <button type="submit" class="bg-blue-500 text-white font-bold px-4 py-2 rounded-lg">
+            <button type="submit" class="bg-blue-500 text-white font-bold px-4 py-2 rounded-lg"
+                onclick="window.location.href='{{ route('information') }}'">
                 <i class="fa-solid fa-circle-info"></i>
             </button>
             <button type="submit" class="bg-green-500 text-white font-bold px-4 py-2 rounded-lg">

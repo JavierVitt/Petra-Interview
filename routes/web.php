@@ -57,9 +57,10 @@ Route::post('/set_interview_question/{eventId}', [QuestionController::class, 'ad
 
 Route::delete('/set_interview_question/{eventId}/{questionId}', [QuestionController::class, 'deleteQuestion'])->name('delete_question');
 
-// Route::get('/set_available_schedule', function () {
-//     return view('interviewer/set_available_schedule');
-// })->name('set_available_schedule');  
+// PAGE INFORMATION, TEST AJA
+Route::get('/information', function () {
+    return view('interviewer/information');
+})->name('information');  
 
 Route::get('/edit_available_schedule', function () {
     return view('interviewer/edit_available_schedule');
