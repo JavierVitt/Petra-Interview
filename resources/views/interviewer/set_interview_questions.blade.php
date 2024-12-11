@@ -40,15 +40,21 @@
             @include('partials.manage_interview_buttons', ['eventId' => $eventId])
         </div>
     </div>
-    <div class="mb-5">
+
+    <div class=" text-center my-4 mx-12 text-lg border-grey-300 border-2">
         {{-- Form e tlg diapikno rek --}}
-        <form action="{{ route('add_question', $eventId) }}" method="post">
+        <form action="{{ route('add_question', $eventId) }}" method="post" class="grid gap-3 items-center py-2">
             @csrf
-            <p>Pertanyaan</p>
-            <input class="bg-gray-200" type="text" name="question" autocomplete="off">
-            <button class="bg-red-500 text-white" type="submit">Add</button>
+            <div class="flex items-center justify-between mx-4">
+                <label for="question" class="font-semibold text-lg text-left mr-2">Pertanyaan</label>
+                <input class="bg-gray-200 p-2 rounded w-4/5 mr-2 text-center" id="question" type="text" name="question"
+                    autocomplete="off" placeholder="Enter your question here">
+                <button class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
+                    type="submit">Add</button>
+            </div>
         </form>
     </div>
+
     <div class="grid grid-cols-6 text-center mx-12 border-b-2 border-black text-lg">
         <div class="col-span-1 bg-gray-200 mx-3 mb-2">No</div>
         <div class="col-span-4 bg-gray-200 mx-3 mb-2">Pertanyaan</div>

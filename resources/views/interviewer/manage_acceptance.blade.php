@@ -1,1 +1,7 @@
-{{-- ndut garapen yo tlg ws meh modar ak --}}
+@extends('templates.base_interviewer')
+
+@section('title', 'User | Landing Page')
+
+@section('content')
+{{-- ON HOLD DULU SEMENTARA --}}
+@endsection

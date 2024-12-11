@@ -90,7 +90,7 @@ class ScheduleController extends Controller
         }
 
 
-        return view('interviewer.set_available_schedule2', [
+        return view('interviewer.set_available_schedule', [
             'schedules' => $allSchedule,
             'checkSchedules' => $checkId,
             'eventId' => $eventId,

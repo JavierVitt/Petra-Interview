@@ -3,33 +3,39 @@
 @section('title', 'Set Available Schedule')
 
 @section('content')
-@if ($errors->any())
-<script>
-    let errorMessages = @json($errors->all());
-    errorMessages.forEach(message => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: message,
-            confirmButtonText: "Okay"
-        });
-    });
-</script>
-@endif
-@if (session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil!',
-        text: '{{ session('success') }}',
-        showConfirmButton: false,
-        timer: 3000
-    });
-</script>
-@endif
+    @if ($errors->any())
+        <script>
+            let errorMessages = @json($errors->all());
+            errorMessages.forEach(message => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: message,
+                    confirmButtonText: "Okay"
+                });
+            });
+        </script>
+    @endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        </script>
+    @endif
 
-    <div class="grid grid-cols-2 mx-14 mt-1 mb-1">
-        <p class="font-bold text-orange-500 text-4xl">Set Available Schedule</p>
+
+    <div class="grid grid-cols-5 mx-14 mt-10 mb-1">
+        <div class=" col-span-2">
+            <p class="font-bold text-4xl text-orange-500">Set Available Schedule</p>
+        </div>
+        <div class="col-span-3 flex items-center justify-center">
+            @include('partials.manage_interview_buttons', ['eventId' => $eventId])
+        </div>
     </div>
 
     <div class="mx-10 mt-1">
@@ -39,34 +45,34 @@
 
             <div class="grid grid-cols-2 mx-4 justify-between">
                 <!-- Date Picker -->
-            <div class="mb-6 mx-1">
-                <label for="date" class="block text-lg font-semibold text-gray-700 mb-2">
-                    Select Date
-                </label>
-                <input type="date" id="date" name="date"
-                    class="block w-full bg-gray-50 border border-gray-300 text-gray-700 rounded-lg py-2 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 shadow-sm transition"
-                    required />
-            </div>
+                <div class="mb-6 mx-1">
+                    <label for="date" class="block text-lg font-semibold text-gray-700 mb-2">
+                        Select Date
+                    </label>
+                    <input type="date" id="date" name="date"
+                        class="block w-full bg-gray-50 border border-gray-300 text-gray-700 rounded-lg py-2 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 shadow-sm transition"
+                        required />
+                </div>
 
-            <!-- Time Picker -->
-            <div class="mb-6 mx-1">
-                <label for="time" class="block text-lg font-semibold text-gray-700 mb-2">
-                    Select Time Slot
-                </label>
-                <select name="time" id="time"
-                    class="block w-full bg-gray-50 border border-gray-300 text-gray-700 rounded-lg py-2 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 shadow-sm transition"
-                    required>
-                    <option value="08:00 - 09:00">08:00 - 09:00</option>
-                    <option value="09:00 - 10:00">09:00 - 10:00</option>
-                    <option value="10:00 - 11:00">10:00 - 11:00</option>
-                    <option value="11:00 - 12:00">11:00 - 12:00</option>
-                    <option value="12:00 - 13:00">12:00 - 13:00</option>
-                    <option value="13:00 - 14:00">13:00 - 14:00</option>
-                    <option value="14:00 - 15:00">14:00 - 15:00</option>
-                    <option value="15:00 - 16:00">15:00 - 16:00</option>
-                    <option value="16:00 - 17:00">16:00 - 17:00</option>
-                </select>
-            </div>
+                <!-- Time Picker -->
+                <div class="mb-6 mx-1">
+                    <label for="time" class="block text-lg font-semibold text-gray-700 mb-2">
+                        Select Time Slot
+                    </label>
+                    <select name="time" id="time"
+                        class="block w-full bg-gray-50 border border-gray-300 text-gray-700 rounded-lg py-2 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 shadow-sm transition"
+                        required>
+                        <option value="08:00 - 09:00">08:00 - 09:00</option>
+                        <option value="09:00 - 10:00">09:00 - 10:00</option>
+                        <option value="10:00 - 11:00">10:00 - 11:00</option>
+                        <option value="11:00 - 12:00">11:00 - 12:00</option>
+                        <option value="12:00 - 13:00">12:00 - 13:00</option>
+                        <option value="13:00 - 14:00">13:00 - 14:00</option>
+                        <option value="14:00 - 15:00">14:00 - 15:00</option>
+                        <option value="15:00 - 16:00">15:00 - 16:00</option>
+                        <option value="16:00 - 17:00">16:00 - 17:00</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Submit Button -->
