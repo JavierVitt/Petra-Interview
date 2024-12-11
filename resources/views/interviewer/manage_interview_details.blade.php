@@ -32,20 +32,20 @@
                     href="{{ asset('khss/' . $khss[$index]) }}" target="_blank">View</a></div>
             <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
                     href="{{ asset('skkks/' . $skkks[$index]) }}" target="_blank">View</a></div>
-            <button class="bg-peinter-yellow rounded-2xl montserratBold"
+            <button class="bg-peinter-yellow rounded-2xl montserratBold mb-2"
                 onclick="window.location.href='/do_interview/{{ $eventId }}/{{ $registrationId[$index] }}/{{ $intervieweeId[$index] }}'">Do
                 Interview</button>
         </div>
     @endforeach
 
-    {{-- DUMMY --}}
+    {{-- DUMMY BUTTON ACTION --}}
     <div class="mt-3 grid grid-cols-8 text-center mx-12 border-b-2 border-gray-100 text-lg">
         <div class="col-span-1 mx-3 mb-2 flex justify-center items-center"><a
                 href="{{ asset('profilePictures/' . $foto) }}"><img class="w-10 h-10"
                     src="{{ asset('profilePictures/' . $foto) }}" alt="Apa"></a></div>
         <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">{{ $interviewees[$index] }}</div>
         <div class="col-span-2 bg-gray-300 mx-3 mb-2 py-2">{{ $jadwals[$index] }}</div>
-        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">Selasar P2</div>{{-- iki gaiso up file sekan --}}
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">LOKASI DUMMY</div>{{-- iki gaiso up file sekan --}}
         <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
                 href="{{ asset('khss/' . $khss[$index]) }}" target="_blank">View</a></div>
         <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
@@ -64,4 +64,39 @@
         </div>
     </div>
 
+    <div class="mt-3 grid grid-cols-8 text-center mx-12 border-b-2 border-gray-100 text-lg">
+        <div class="col-span-1 mx-3 mb-2 flex justify-center items-center"><a
+                href="{{ asset('profilePictures/' . $foto) }}"><img class="w-10 h-10"
+                    src="{{ asset('profilePictures/' . $foto) }}" alt="Apa"></a></div>
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">{{ $interviewees[$index] }}</div>
+        <div class="col-span-2 bg-gray-300 mx-3 mb-2 py-2">{{ $jadwals[$index] }}</div>
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">DUMMY LOKASI</div>{{-- iki gaiso up file sekan --}}
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
+                href="{{ asset('khss/' . $khss[$index]) }}" target="_blank">View</a></div>
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
+                href="{{ asset('skkks/' . $skkks[$index]) }}" target="_blank">View</a></div>
+        <div class="col-span-1"> {{-- ACCEPTED --}}
+            <td class="border border-gray-300 px-4 py-2 text-center">
+                <span class="text-green-500 font-bold">Accepted</span>
+            </td>
+        </div>
+    </div>
+
+    <div class="mt-3 grid grid-cols-8 text-center mx-12 border-b-2 border-gray-100 text-lg">
+        <div class="col-span-1 mx-3 mb-2 flex justify-center items-center"><a
+                href="{{ asset('profilePictures/' . $foto) }}"><img class="w-10 h-10"
+                    src="{{ asset('profilePictures/' . $foto) }}" alt="Apa"></a></div>
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">{{ $interviewees[$index] }}</div>
+        <div class="col-span-2 bg-gray-300 mx-3 mb-2 py-2">{{ $jadwals[$index] }}</div>
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">DUMMY LOKASI</div>{{-- iki gaiso up file sekan --}}
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
+                href="{{ asset('khss/' . $khss[$index]) }}" target="_blank">View</a></div>
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
+                href="{{ asset('skkks/' . $skkks[$index]) }}" target="_blank">View</a></div>
+        <div class="col-span-1"> {{-- REJECTED --}}
+            <td class="border border-gray-300 mb-2 py-2 text-center">
+                <span class="text-red-500 font-bold">Rejected</span>
+            </td>
+        </div>
+    </div>
 @endsection
