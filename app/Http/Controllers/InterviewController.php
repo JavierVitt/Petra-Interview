@@ -47,11 +47,14 @@ class InterviewController extends Controller
 
         $registrations = Registration::where('interviewer_id', $interviewerId)->where('event_id',$eventId)->get();
 
+
         $registrationId = [];
         $fotos = [];
         $interviewees = [];
         $intervieweesId = [];
         $jadwals = [];
+        $locations = [];
+        $statuss = [];
         $khss = [];
         $skkks = [];
 
@@ -61,6 +64,8 @@ class InterviewController extends Controller
             $dataInterviewee = User::where('id', $registration->user_id)->first();
             $jadwalInterview = AvailableInterviewSchedule::where('id', $registration->available_interview_id)->first();
             $jadwalText = $jadwalInterview->interview_date . ", " . $jadwalInterview->interview_time;
+            $location = $jadwalInterview->interview_location;
+            $status = $registration->status;
             $khs = $registration->khs;
             $skkk = $registration->skkk;
 
@@ -69,6 +74,8 @@ class InterviewController extends Controller
             array_push($intervieweesId, $dataInterviewee->id);
             array_push($interviewees, $dataUser->name);
             array_push($jadwals, $jadwalText);
+            array_push($locations, $location);
+            array_push($statuss, $status);
             array_push($khss, $khs);
             array_push($skkks, $skkk);
         }
@@ -81,7 +88,9 @@ class InterviewController extends Controller
             'khss' => $khss,
             'skkks' => $skkks,
             'registrationId' => $registrationId,
-            'intervieweeId' => $intervieweesId
+            'intervieweeId' => $intervieweesId,
+            'locations' => $locations,
+            'statuss' => $statuss
         ]);
     }
     public function doInterview($eventId, $registrationId, $intervieweeId)
@@ -136,8 +145,6 @@ class InterviewController extends Controller
             $listOfSecondDivisionQuestions = Question::where('division_id', $secondDivisionId)->get();
         }
 
-
-
         return view('interviewer/do_interview', [
             'eventId' => $eventId,
             'registrationId' => $registrationId,
@@ -145,6 +152,36 @@ class InterviewController extends Controller
             'firstDivisionQuestion' => $listOfFirstDivisionQuestions,
             'secondDivisionQuestion' => $listOfSecondDivisionQuestions
         ]);
+    }
+    public function showAnswer($registrationId){
+        $datas = Interview::where('registration_id',$registrationId)->get();
+        
+        $questions = [];
+        $answers = [];
+
+        foreach ($datas as $data) {
+            array_push($questions,Question::where('id',$data->question_id)->first()->question_content);
+            array_push($answers, $data->answers);
+        }
+
+        return view('interviewer/information',[
+            'questions' => $questions,
+            'answers' => $answers
+        ]);
+    }
+    public function acceptInterview($registrationId){
+        $target = Registration::where('id',$registrationId)->first();
+        $target->status = 'Diterima';
+        $target->save();
+
+        return redirect()->back();
+    }
+    public function rejectInterview($registrationId){
+        $target = Registration::where('id',$registrationId)->first();
+        $target->status = 'Ditolak';
+        $target->save();
+
+        return redirect()->back();
     }
     public function storeAnswer(Request $request)
     {

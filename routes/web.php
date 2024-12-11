@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\UserController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\RegistrationController;
+use App\Models\Interview;
 
 // login
 Route::get('/', function () {
@@ -58,9 +60,13 @@ Route::post('/set_interview_question/{eventId}', [QuestionController::class, 'ad
 Route::delete('/set_interview_question/{eventId}/{questionId}', [QuestionController::class, 'deleteQuestion'])->name('delete_question');
 
 // PAGE INFORMATION, TEST AJA
-Route::get('/information', function () {
-    return view('interviewer/information');
-})->name('information');  
+// Route::get('/information', function () {
+//     return view('interviewer/information');
+// })->name('information');  
+
+Route::post('/interview_result/{registrationId}',[InterviewController::class, 'showAnswer'])->name('interview_result');
+Route::post('/accept_interview/{registrationId}',[InterviewController::class, 'acceptInterview'])->name('accept_interview');
+Route::post('/reject_interview/{registrationId}',[InterviewController::class, 'rejectInterview'])->name('reject_interview');
 
 Route::get('/edit_available_schedule', function () {
     return view('interviewer/edit_available_schedule');

@@ -28,7 +28,6 @@
         </script>
     @endif
 
-
     <div class="grid grid-cols-5 mx-14 mt-10 mb-1">
         <div class=" col-span-2">
             <p class="font-bold text-4xl text-orange-500">Set Available Schedule</p>
@@ -79,7 +78,7 @@
                     <label for="text-input" class="block text-lg font-semibold text-gray-700 mb-2">
                         Enter Location
                     </label>
-                    <input type="text" id="text-input" name="text-input"
+                    <input autocomplete="off" type="text" id="text-input" name="location"
                         class="block w-full bg-gray-50 border border-gray-300 text-gray-700 rounded-lg py-2 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 shadow-sm transition"
                         placeholder="Input Interview Location" />
                 </div>
@@ -122,6 +121,7 @@
                                     'count' => $count,
                                     'date' => $schedule['interview_date'],
                                     'time' => $schedule['interview_time'],
+                                    'location' => $schedule['interview_location']
                                 ])
                                 @php
                                     $count += 1;

@@ -2,6 +2,7 @@
     <td class="py-3 px-6 text-center">{{ $count }}</td>
     <td class="py-3 px-6 text-center">{{ $date }}</td>
     <td class="py-3 px-6 text-center">{{ $time }}</td>
+    <td class="py-3 px-6 text-center">{{ $location }}</td>
     <td class="py-3 px-6 text-center">
         @if ($check == 0)
         <form action="{{ route('delete_schedule',['eventId'=>$eventId,'availableId'=>$id]) }}" method="post">

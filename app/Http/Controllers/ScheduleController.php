@@ -26,12 +26,14 @@ class ScheduleController extends Controller
 
         $validation = $request->validate([
             'date' => 'required|after_or_equal:' . $eventOprec . '|before_or_equal:' . $eventCloserec,
-            'time' => 'required'
+            'time' => 'required',
+            'location' => 'required'
         ], [
             'date.required' => 'Harap Mengisi Tanggal Interview',
             'date.after_or_equal' => 'Tanggal Open Recruitment Dimulai Pada : ' . $eventOprec,
             'date.before_or_equal' => 'Tanggal Close Recruitment Berakhir Pada : ' . $eventCloserec,
-            'time.required' => 'Harap Mengisi Waktu Interview'
+            'time.required' => 'Harap Mengisi Waktu Interview',
+            'location.required' => 'Harap mengisi lokasi interview'
         ]);
 
         $userId = User::where('email', $userEmail)->first()->id;
@@ -51,6 +53,7 @@ class ScheduleController extends Controller
 
         $schedule->interview_date = $validation['date'];
         $schedule->interview_time = $validation['time'];
+        $schedule->interview_location = $validation['location'];
         $schedule->interviewer_id = $interviewerId;
         $schedule->event_id = $eventId;
 

@@ -30,7 +30,7 @@
                             {{-- ini entar default values nya diisi pake data user yang diambil dari middleware. entar aja pas udah ngerjain middleware. --}}
                             <p class="font-bold">Nama</p>
                             <input type="text" name="nama" class="rounded-lg h-10 w-11/12 px-3"
-                                value="{{ $userData['name'] }}">
+                                value="{{ $userData['name'] }}" readonly>
                                 <p class="font-bold mt-3">Pilihan Divisi 1</p>
                                 <select name="divisi1" id="firstDivision" class="rounded-lg h-10 w-11/12 px-3">
                                     <option value="">Pilihan Divisi 1</option>
@@ -39,7 +39,7 @@
                                     @endforeach
                                 </select>
                                 <p class="font-bold mt-3">Tanggal Interview</p>
-                            <select name="jadwalInterview" id="jadwal" class="rounded-lg h-10 w-11/12 px-3">
+                            <select name="jadwalInterview" id="jadwal" class="rounded-lg h-10 w-11/12 px-3" required>
                             </select>
                             <p class="font-bold mt-3">Transkrip KHS</p>
                             <input type="file" name="khs" class="rounded-lg h-10 w-11/12 px-3 pt-1 bg-white"
@@ -48,16 +48,16 @@
                         <div>
                             <p class="font-bold">NRP</p>
                             <input type="text" class="rounded-lg h-10 w-11/12 px-3" name="nrp"
-                                value="{{ Str::before($userData['email'], '@') }}">
+                                value="{{ Str::before($userData['email'], '@') }}" readonly>
                                 <p class="font-bold mt-3">Pilihan Divisi 2</p>
-                                <select name="divisi2" id="" class="rounded-lg h-10 w-11/12 px-3">
+                                <select name="divisi2" id="" class="rounded-lg h-10 w-11/12 px-3" required>
                                     <option value="">Pilihan Divisi 2</option>
                                     @foreach ($divisions as $division)
                                         <option value="{{ $division['id'] }}">{{ $division['division_name'] }}</option>
                                     @endforeach
                                 </select>
                                 <p class="font-bold mt-3">Waktu Interview</p>
-                                <select name="waktu" id="waktu" class="rounded-lg h-10 w-11/12 px-3">
+                                <select name="waktu" id="waktu" class="rounded-lg h-10 w-11/12 px-3" required>
                                 </select>
                             <p class="font-bold mt-3">Transkrip SKKK</p>
                             <input type="file" name="skkk" class="rounded-lg h-10 w-11/12 px-3 pt-1 bg-white"
@@ -131,7 +131,7 @@
                     },
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     success: function (response) {
-                        let options = '<option value="default">Select an item</option>';
+                        let options = '<option value="">Select an item</option>';
                         response.forEach(function (item) {
                             options += `<option value="${item.interview_time}"> ${item.interview_time}</option>`;
                         });
