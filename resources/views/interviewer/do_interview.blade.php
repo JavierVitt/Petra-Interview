@@ -52,8 +52,9 @@
     @endforeach
 
     <div class="flex my-8 justify-center items-center">
-        <button class=" bg-green-400 py-3 px-8 rounded-lg text-white text-lg border-black border-1 hover:shadow-xl">
-            Finnish
+        <button class="bg-green-400 py-3 px-8 rounded-lg text-white text-lg border-black border-1 hover:shadow-xl"
+            onclick="window.location.href = '{{ route('manage_interview_details', ['event_id' => $eventId]) }}'">
+            Finish
         </button>
     </div>
 

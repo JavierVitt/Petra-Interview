@@ -22,16 +22,45 @@
     </div>
     @foreach ($fotos as $index => $foto)
         <div class="mt-3 grid grid-cols-8 text-center mx-12 border-b-2 border-gray-100 text-lg">
-            <div class="col-span-1 mx-3 mb-2 flex justify-center items-center"><a href="{{ asset('profilePictures/'.$foto) }}"><img class="w-10 h-10" src="{{ asset('profilePictures/'.$foto) }}" alt="Apa"></a></div>
+            <div class="col-span-1 mx-3 mb-2 flex justify-center items-center"><a
+                    href="{{ asset('profilePictures/' . $foto) }}"><img class="w-10 h-10"
+                        src="{{ asset('profilePictures/' . $foto) }}" alt="Apa"></a></div>
             <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">{{ $interviewees[$index] }}</div>
             <div class="col-span-2 bg-gray-300 mx-3 mb-2 py-2">{{ $jadwals[$index] }}</div>
             <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">Selasar P2</div>{{-- iki gaiso up file sekan --}}
-            <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a href="{{ asset('khss/'.$khss[$index]) }}"
-                    target="_blank">View</a></div>
-            <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a href="{{ asset('skkks/'.$skkks[$index]) }}"
-                    target="_blank">View</a></div>
+            <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
+                    href="{{ asset('khss/' . $khss[$index]) }}" target="_blank">View</a></div>
+            <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
+                    href="{{ asset('skkks/' . $skkks[$index]) }}" target="_blank">View</a></div>
             <button class="bg-peinter-yellow rounded-2xl montserratBold"
-                onclick="window.location.href='/do_interview/{{ $eventId }}/{{ $registrationId[$index] }}/{{ $intervieweeId[$index] }}'">Do Interview</button>
+                onclick="window.location.href='/do_interview/{{ $eventId }}/{{ $registrationId[$index] }}/{{ $intervieweeId[$index] }}'">Do
+                Interview</button>
         </div>
     @endforeach
+
+    {{-- DUMMY --}}
+    <div class="mt-3 grid grid-cols-8 text-center mx-12 border-b-2 border-gray-100 text-lg">
+        <div class="col-span-1 mx-3 mb-2 flex justify-center items-center"><a
+                href="{{ asset('profilePictures/' . $foto) }}"><img class="w-10 h-10"
+                    src="{{ asset('profilePictures/' . $foto) }}" alt="Apa"></a></div>
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">{{ $interviewees[$index] }}</div>
+        <div class="col-span-2 bg-gray-300 mx-3 mb-2 py-2">{{ $jadwals[$index] }}</div>
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">Selasar P2</div>{{-- iki gaiso up file sekan --}}
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
+                href="{{ asset('khss/' . $khss[$index]) }}" target="_blank">View</a></div>
+        <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2 text-blue-500 hover:text-blue-700"><a
+                href="{{ asset('skkks/' . $skkks[$index]) }}" target="_blank">View</a></div>
+        <div class="col-span-1"> {{-- Button INFO/ACC/REJECT --}}
+            <button type="submit" class="bg-blue-500 text-white font-bold px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-circle-info"></i>
+            </button>
+            <button type="submit" class="bg-green-500 text-white font-bold px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-check"></i>
+            </button>
+            <button type="submit" class="bg-red-500 text-white font-bold px-4 py-2 rounded-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
 @endsection
