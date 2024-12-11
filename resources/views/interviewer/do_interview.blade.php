@@ -51,17 +51,12 @@
         </div>
     @endforeach
 
-    <div class="grid grid-cols-5 mt-8">
-        <div class="text-right col-span-2">
-            <button
-                class=" bg-red-600 py-3 px-12 rounded-lg text-white text-lg border-black border-1 hover:shadow-xl">Back</button>
-        </div>
-        <div class="col-span-1"></div>
-        <div class="text-left col-span-2">
-            <button
-                class=" bg-blue-800 py-3 px-12 rounded-lg text-white text-lg border-black border-1 hover:shadow-xl">Next</button>
-        </div>
+    <div class="flex my-8 justify-center items-center">
+        <button class=" bg-green-400 py-3 px-8 rounded-lg text-white text-lg border-black border-1 hover:shadow-xl">
+            Finnish
+        </button>
     </div>
+
     <script>
         $(document).ready(function() {
             $('.answer-textarea').on('blur', function() {
