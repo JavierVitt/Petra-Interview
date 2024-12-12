@@ -40,12 +40,12 @@ class ScheduleController extends Controller
 
         $interviewerId = Interviewer::where('user_id', $userId)->where('event_id', $eventId)->first()->id;
 
-        $checkSchedule = AvailableInterviewSchedule::where('interviewer_id',$interviewerId)
-        ->where('interview_date',$validation['date'])->where('interview_time',$validation['time'])
-        ->where('event_id',$eventId)->first();
+        $checkSchedule = AvailableInterviewSchedule::where('interviewer_id', $interviewerId)
+            ->where('interview_date', $validation['date'])->where('interview_time', $validation['time'])
+            ->where('event_id', $eventId)->first();
 
-        if($checkSchedule!=null){
-            return redirect()->route('set_available_schedule',['eventId' => $eventId])->withErrors(['errors' => 'Jadwal Sudah Ada']);
+        if ($checkSchedule != null) {
+            return redirect()->route('set_available_schedule', ['eventId' => $eventId])->withErrors(['errors' => 'Jadwal Sudah Ada']);
         }
 
 
@@ -82,14 +82,13 @@ class ScheduleController extends Controller
         foreach ($allSchedule as $schedule) {
             $scheduleId = $schedule->id;
 
-            $check = Registration::where('available_interview_id',$scheduleId)->first();
+            $check = Registration::where('available_interview_id', $scheduleId)->first();
 
-            if ($check!=null) {
-                array_push($checkId,1);
-            }else{
-                array_push($checkId,0);
+            if ($check != null) {
+                array_push($checkId, 1);
+            } else {
+                array_push($checkId, 0);
             }
-            
         }
 
 
@@ -162,15 +161,30 @@ class ScheduleController extends Controller
         $user = User::where('email', $email)->first();
         $interviewer = Interviewer::where('division_id', $division)->where('event_id', $eventId)->first()->id;
 
-        $times = AvailableInterviewSchedule::where('interviewer_id', $interviewer)->where('event_id', $eventId)->where('interview_date', $tanggal)->get();
+        $availableInterviews = Registration::all();
+
+        $listOfSchedules = [];
+
+        foreach ($availableInterviews as $availableInterview) {
+            array_push($listOfSchedules, $availableInterview->available_interview_id);
+        }
+
+        // $times = AvailableInterviewSchedule::where('interviewer_id', $interviewer)->where('event_id', $eventId)->where('interview_date', $tanggal)->get();
+
+        $times = AvailableInterviewSchedule::where('interviewer_id', $interviewer)
+            ->where('event_id', $eventId)
+            ->where('interview_date', $tanggal)
+            ->whereNotIn('id', $listOfSchedules)
+            ->get();
 
         return response()->json($times);
     }
-    public function deleteSchedule($eventId, $availableId){
-        $deleteTarget = AvailableInterviewSchedule::where('id',$availableId)->first();
+    public function deleteSchedule($eventId, $availableId)
+    {
+        $deleteTarget = AvailableInterviewSchedule::where('id', $availableId)->first();
 
         $deleteTarget->delete();
-        
-        return redirect()->back()->with('success','Jadwal berhasil di hapus');
+
+        return redirect()->back()->with('success', 'Jadwal berhasil di hapus');
     }
 }

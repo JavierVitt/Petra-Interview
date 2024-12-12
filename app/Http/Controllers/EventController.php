@@ -24,6 +24,7 @@ class EventController extends Controller
         $userId = User::where('email',Session::get('email'))->first()->id;
 
         $listOfInterviewers = Interviewer::where('user_id',$userId)->get();
+        $listOfRegistereds = Registration::where('user_id', $userId)->get();
 
         $eventLists = [];
 
@@ -33,6 +34,11 @@ class EventController extends Controller
                 array_push($eventLists, $listOfInterviewer->event_id);
             }
         }
+
+        foreach ($listOfRegistereds as $registered) {
+            array_push($eventLists, $registered->event_id);
+        }
+
 
         $events = Event::when(!empty($eventLists), function ($query) use ($eventLists) {
             return $query->whereNotIn('id', $eventLists);
