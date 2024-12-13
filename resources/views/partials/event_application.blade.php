@@ -27,7 +27,7 @@
     @endif
     @if ($status == 'Sedang di Proses')
     <td class="border border-gray-300 px-4 py-2 text-center">
-        <span class="bg-gray-500 text-white px-4 py-2 rounded-lg">Sedang Di Proses</span>
+        <span class="bg-gray-500 text-white px-4 py-2 rounded-lg">Sedang Diproses</span>
     </td>
     @endif
     @if ($status == 'Diterima')
