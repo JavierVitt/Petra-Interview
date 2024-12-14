@@ -25,7 +25,7 @@
                         'jadwalInterview' => $jadwalInterviews[$index],
                         'eventName' => $eventNames[$index],
                         'status' => $statuss[$index],
-                    ]);
+                    ])
                 @endforeach
             </tbody>
         </table>

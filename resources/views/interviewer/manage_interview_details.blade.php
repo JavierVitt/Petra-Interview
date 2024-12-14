@@ -25,8 +25,8 @@
         @if ($statuss[$index] == 'Menunggu Interview')
             <div class="mt-3 grid grid-cols-8 text-center mx-12 border-b-2 border-gray-100 text-lg">
                 <div class="col-span-1 mx-3 mb-2 flex justify-center items-center"><a
-                        href="{{ asset('profilePictures/' . $foto) }}"><img class="w-10 h-10"
-                            src="{{ asset('profilePictures/' . $foto) }}" alt="Apa"></a></div>
+                        href="{{ asset('profilePictures/' . $foto) }}" target="_blank"><img class="w-10 h-10"
+                            src="{{ asset('profilePictures/' . $foto) }}" alt="Foto pendaftar" ></a></div>
                 <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">{{ $interviewees[$index] }}</div>
                 <div class="col-span-2 bg-gray-300 mx-3 mb-2 py-2">{{ $jadwals[$index] }}</div>
                 <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">{{ $locations[$index] }}</div>{{-- iki gaiso up file sekan --}}
@@ -41,9 +41,11 @@
         @endif
         @if ($statuss[$index] == 'Sedang di Proses')
             <div class="mt-3 grid grid-cols-8 text-center mx-12 border-b-2 border-gray-100 text-lg">
-                <div class="col-span-1 mx-3 mb-2 flex justify-center items-center"><a
-                        href="{{ asset('profilePictures/' . $foto) }}"><img class="w-10 h-10"
-                            src="{{ asset('profilePictures/' . $foto) }}" alt="Apa"></a></div>
+                <div class="col-span-1 mx-3 mb-2 flex justify-center items-center">
+                    <a target="_blank" href="{{ asset('profilePictures/' . $foto) }}">
+                        <img class="w-10 h-10" src="{{ asset('profilePictures/' . $foto) }}" alt="Apa">
+                    </a>
+                </div>
                 <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">{{ $interviewees[$index] }}</div>
                 <div class="col-span-2 bg-gray-300 mx-3 mb-2 py-2">{{ $jadwals[$index] }}</div>
                 <div class="col-span-1 bg-gray-300 mx-3 mb-2 py-2">{{ $locations[$index] }}</div>{{-- iki gaiso up file sekan --}}
