@@ -127,18 +127,6 @@
                                     $count += 1;
                                 @endphp
                             @endforeach
-                            <!-- ENTRY DATA DUMMY -->
-                            <tr class="border-b">
-                                <td class="py-3 px-6 text-center">1</td>
-                                <td class="py-3 px-6 text-center">2024-12-15</td>
-                                <td class="py-3 px-6 text-center">10:00 - 11:00</td>
-                                <td class="py-3 px-6 text-center">Lokasi Meeting Room dummy</td> <!-- Dummy Lokasi -->
-                                <td class="py-3 px-6 text-center">
-                                    <button class="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

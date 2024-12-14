@@ -28,6 +28,14 @@ class EventController extends Controller
 
         $eventLists = [];
 
+        $events = Event::where('chairman_id', $userId)->get();
+
+        // if($events){
+        //     foreach($events as $event){
+        //         array_push($eventLists, $event->id);
+        //     }
+        // }
+
         foreach ($listOfInterviewers as $listOfInterviewer) {
             $BPHKOfInterviewers = $listOfInterviewer->user_id;
             if($BPHKOfInterviewers == $userId){
@@ -43,7 +51,8 @@ class EventController extends Controller
         $events = Event::when(!empty($eventLists), function ($query) use ($eventLists) {
             return $query->whereNotIn('id', $eventLists);
         })
-        ->where('recruitment_end_date', '>', now())
+        ->where('recruitment_start_date', '<=', now())
+        ->where('recruitment_end_date', '>=', now())
         ->where('status', 1)
         ->orderBy('recruitment_end_date')
         ->get();
@@ -136,11 +145,11 @@ class EventController extends Controller
         $event->updated_at = now();
 
         $event->save();
-
+        
         $eventId = Event::where('proposal', $validatedData['proposalAcara'])->value('id');
-
+        
         $divisionController = new DivisionController();
-
+        
         if ($divisionController->store($request, $eventId) == false) {
             return redirect()->route('add_event')->withErrors(['errors' => 'Seluruh Interviewer Wajib Sign Up Terlebih Dahulu di Peinter']);
         }
