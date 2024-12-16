@@ -3,14 +3,14 @@
 @section('title', 'Event Details')
 
 @section('content')
-    <h1 class="mx-14 mt-10 mb-5 font-bold text-4xl text-orange-500">Event Details</h1>
+    <h1 class="mx-4 mt-10 mb-5 font-bold text-4xl text-orange-500 sm:text-3xl">Event Details</h1>
 
-    <div class="mx-14 mt-5">
-        <div class="bg-white shadow-md rounded-lg p-8 space-y-6">
+    <div class="mx-4 mt-5 sm:mx-8">
+        <div class="bg-white shadow-md rounded-lg p-6 sm:p-8 space-y-6">
             <h2 class="text-2xl font-semibold text-gray-700 mb-6">Event Information</h2>
 
             <!-- Event Details Section -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                     <strong class="text-gray-600">Nama Acara:</strong>
                     <p class="text-gray-700">{{ $event->event_name }}</p>
