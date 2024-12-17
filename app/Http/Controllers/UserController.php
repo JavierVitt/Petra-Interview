@@ -67,7 +67,7 @@ class UserController extends Controller
 
         Session::put('email',$email);
 
-        return redirect()->route('add_event');
+        return redirect()->route('register_to_event')->with('success','Sign Up Berhasil !');
     }
     public function login(Request $request){
         
@@ -82,7 +82,7 @@ class UserController extends Controller
         $user = new User();
 
         if(User::authUsers($email,$password)){
-            return redirect()->route('register_to_event');
+            return redirect()->route('register_to_event')->with('success','Login Berhasil !');
         }
         return redirect()->route('login')->withErrors(['errors' => 'Email/Password Tidak Valid']);
     }

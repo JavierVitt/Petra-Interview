@@ -48,7 +48,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline montserratRegular text-sm"
-                        id="email" type="text" name="email" placeholder="Email address" required
+                        id="email" value="{{ old('email') }}" type="text" name="email" placeholder="Email address" required
                         autocomplete="off">
                 </div>
 
@@ -59,7 +59,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password" name="password" type="password" placeholder="******************" required>
+                        id="password" value="{{ old('password') }}" name="password" type="password" placeholder="******************" required>
                 </div>
 
                 <!-- Full Name Input -->
@@ -69,7 +69,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline montserratRegular text-sm"
-                        id="namaLengkap" type="text" name="namaLengkap" placeholder="Nama Lengkap" required
+                        id="namaLengkap" value="{{ old('namaLengkap') }}" type="text" name="namaLengkap" placeholder="Nama Lengkap" required
                         autocomplete="off">
                 </div>
 
@@ -80,7 +80,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline montserratRegular text-sm"
-                        id="tanggalLahir" type="date" name="tanggalLahir" required autocomplete="off">
+                        id="tanggalLahir" value="{{ old('tanggalLahir') }}" type="date" name="tanggalLahir" required autocomplete="off">
                 </div>
 
                 <!-- Profile Picture Input -->
@@ -90,7 +90,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline montserratRegular text-sm"
-                        id="profilePicture" type="file" name="profilePicture" required autocomplete="off">
+                        id="profilePicture" value="{{ old('profilePicture') }}" type="file" name="profilePicture" required autocomplete="off">
                 </div>
 
                 <!-- Submit Button -->

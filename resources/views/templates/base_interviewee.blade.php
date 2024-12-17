@@ -66,6 +66,30 @@
             exit();
         @endphp
     @endif
+    @if ($errors->any())
+        <script>
+            let errorMessages = @json($errors->all());
+            errorMessages.forEach(message => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: message,
+                    confirmButtonText: "Okay"
+                });
+            });
+        </script>
+    @endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+    @endif
 
     @include('navbar.navbar_interviewee')
     @yield('content')

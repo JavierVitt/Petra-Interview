@@ -18,6 +18,30 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
+    @if ($errors->any())
+        <script>
+            let errorMessages = @json($errors->all());
+            errorMessages.forEach(message => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: message,
+                    confirmButtonText: "Okay"
+                });
+            });
+        </script>
+    @endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+    @endif
     @yield('content')
 </body>
 </html>

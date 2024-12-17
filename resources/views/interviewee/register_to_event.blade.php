@@ -3,32 +3,6 @@
 @section('title', 'User | Manage Page')
 
 @section('content')
-    @if ($errors->any())
-        <script>
-            let errorMessages = @json($errors->all());
-            console.log(errorMessages);
-            errorMessages.forEach(message => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: message,
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            });
-        </script>
-    @endif
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 3000
-            });
-        </script>
-    @endif
 
     <p class="mx-4 mt-10 mb-5 font-bold text-4xl text-orange-500 text-center sm:text-left">Register to Event</p>
 

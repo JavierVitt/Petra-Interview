@@ -42,13 +42,14 @@
                 <div>
                     <div>
                         <strong class="text-gray-600">Proposal (PDF):</strong>
-                        <a href="{{ asset('proposals/'.$event->proposal) }}" target="_blank"
-                        class="text-blue-500">Download Proposal</a>
+                        <a href="{{ asset('proposals/' . $event->proposal) }}" target="_blank"
+                            class="text-blue-500">Download
+                            Proposal</a>
                     </div>
                     <div class="mt-4">
                         <strong class="text-gray-600">RA-RMA (XLS):</strong>
-                        <a href="{{ asset('raRmas/'.$event->raRma) }}" target="_blank"
-                        class="text-blue-500">Download RA-RMA</a>
+                        <a href="{{ asset('raRmas/' . $event->raRma) }}" target="_blank" class="text-blue-500">Download
+                            RA-RMA</a>
                     </div>
                 </div>
             </div>
@@ -57,7 +58,7 @@
             <h3 class="text-xl font-semibold text-gray-700 mt-8 mb-4">Divisions Available</h3>
             <ul class="list-disc pl-6 space-y-2">
                 @foreach ($divisions as $div)
-                <li class="text-gray-700">{{ $div->division_name }}</li>
+                    <li class="text-gray-700">{{ $div->division_name }}</li>
                 @endforeach
             </ul>
 

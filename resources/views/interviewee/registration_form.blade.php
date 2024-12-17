@@ -34,12 +34,12 @@
                         <div>
                             <!-- Name Field -->
                             <p class="font-bold">Nama</p>
-                            <input type="text" name="nama" class="rounded-lg h-10 w-full px-3"
+                            <input type="text" name="nama" value="{{ old('nama') }}" class="rounded-lg h-10 w-full px-3"
                                 value="{{ $userData['name'] }}" readonly>
 
                             <!-- First Division Selection -->
                             <p class="font-bold mt-3">Pilihan Divisi 1</p>
-                            <select name="divisi1" id="firstDivision" class="rounded-lg h-10 w-full px-3">
+                            <select name="divisi1" id="firstDivision" class="rounded-lg h-10 w-full px-3"  value="{{ old('divisi1') }}">
                                 <option value="">Pilihan Divisi 1</option>
                                 @foreach ($divisions as $division)
                                     <option value="{{ $division['id'] }}">{{ $division['division_name'] }}</option>
@@ -49,7 +49,7 @@
                             <!-- Interview Date -->
                             <p class="font-bold mt-3">Tanggal Interview</p>
                             <select name="jadwalInterview" id="jadwal" class="rounded-lg h-10 w-full px-3"
-                                required></select>
+                                required  value="{{ old('jadwalInterview') }}"></select>
 
                             <!-- KHS File Upload -->
                             <p class="font-bold mt-3">Transkrip KHS</p>
@@ -66,7 +66,7 @@
                             <!-- Second Division Selection -->
                             <p class="font-bold mt-3">Pilihan Divisi 2</p>
                             <select name="divisi2" class="rounded-lg h-10 w-full px-3" required>
-                                <option value="">Pilihan Divisi 2</option>
+                                <option value=""  value="{{ old('divisi2') }}">Pilihan Divisi 2</option>
                                 @foreach ($divisions as $division)
                                     <option value="{{ $division['id'] }}">{{ $division['division_name'] }}</option>
                                 @endforeach
@@ -74,11 +74,11 @@
 
                             <!-- Interview Time -->
                             <p class="font-bold mt-3">Waktu Interview</p>
-                            <select name="waktu" id="waktu" class="rounded-lg h-10 w-full px-3" required></select>
+                            <select name="waktu" id="waktu" value="{{ old('waktu') }}" class="rounded-lg h-10 w-full px-3" required></select>
 
                             <!-- SKKK File Upload -->
                             <p class="font-bold mt-3">Transkrip SKKK</p>
-                            <input type="file" name="skkk" class="rounded-lg h-10 w-full px-3 pt-1 bg-white"
+                            <input type="file" name="skkk" value="{{ old('skkk') }}" class="rounded-lg h-10 w-full px-3 pt-1 bg-white"
                                 value="" required>
 
                             <!-- Submit Button -->

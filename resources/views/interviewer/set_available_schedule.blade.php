@@ -4,30 +4,6 @@
 
 @section('content')
 
-    @if ($errors->any())
-        <script>
-            let errorMessages = @json($errors->all());
-            errorMessages.forEach(message => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: message,
-                    confirmButtonText: "Okay"
-                });
-            });
-        </script>
-    @endif
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 3000
-            });
-        </script>
-    @endif
 
     <!-- Page Title -->
     <div class="mx-4 sm:mx-14 mt-10 mb-6 flex flex-col sm:flex-row justify-between items-center">
@@ -48,7 +24,7 @@
                     <label for="date" class="block text-lg font-semibold text-gray-700 mb-2">
                         Select Date
                     </label>
-                    <input type="date" id="date" name="date"
+                    <input type="date" id="date" name="date" value="{{ old('date') }}"
                         class="w-full bg-gray-50 border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 transition shadow-sm"
                         required />
                 </div>
@@ -74,7 +50,7 @@
                     </label>
                     <input autocomplete="off" type="text" id="location" name="location"
                         class="w-full bg-gray-50 border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 transition shadow-sm"
-                        placeholder="Input Interview Location" required />
+                        placeholder="Input Interview Location" required value="{{ old('location') }}" />
                 </div>
             </div>
 

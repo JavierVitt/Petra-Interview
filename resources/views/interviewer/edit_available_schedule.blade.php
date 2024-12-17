@@ -13,13 +13,13 @@
             <div class="mb-4">
                 <label for="schedule_date" class="block text-lg font-semibold text-gray-700">Pilih Tanggal</label>
                 <input type="text" id="schedule_date" name="schedule_date"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg mt-2" required>
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg mt-2" required value="{{ old('schedule_date') }}">
             </div>
 
             <div class="mb-4">
                 <label for="schedule_time" class="block text-lg font-semibold text-gray-700">Pilih Jam</label>
                 <select name="schedule_time" id="schedule_time"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg mt-2" required>
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg mt-2" required value="{{ old('schedule_time') }}">
                     <option value="19:00-19:30">19:00-19:30</option>
                     <option value="19:30-20:00">19:30-20:00</option>
                     <option value="20:00-20:30">20:00-20:30</option>

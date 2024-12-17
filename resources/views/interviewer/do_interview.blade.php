@@ -3,30 +3,7 @@
 @section('title', 'User | Manage Page')
 
 @section('content')
-    @if ($errors->any())
-        <script>
-            let errorMessages = @json($errors->all());
-            errorMessages.forEach(message => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: message,
-                    confirmButtonText: "Okay"
-                });
-            });
-        </script>
-    @endif
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 1000
-            });
-        </script>
-    @endif
+    
 
     <div class="mt-6 mx-4 sm:mx-14">
         @foreach ($firstDivisionQuestion as $index => $question)

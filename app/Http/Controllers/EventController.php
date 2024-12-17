@@ -85,21 +85,22 @@ class EventController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'namaAcara' => 'required|string|max:255',
-            'tanggalOprec' => 'required|date',
-            'tanggalCloserec' => 'required|date|after_or_equal:tanggalOprec',
+            'tanggalOprec' => 'required|date|after_or_equal:now',
+            'tanggalCloserec' => 'required|date|after_or_equal:tanggalOprec|after_or_equal:now',
             'deskripsiAcara' => 'nullable|string',
-            'tanggalAcara' => 'required|date|after_or_equal:tanggalCloserec',
+            'tanggalAcara' => 'required|date|after_or_equal:tanggalCloserec|after_or_equal:now',
             'lingkupAcara' => 'nullable|string|max:255',
             'lokasiAcara' => 'nullable|string|max:255',
             'proposalAcara' => 'nullable|file|mimes:pdf|max:2048',
-            'raRmaAcara' => 'nullable|file|mimes:xlsx,xls|max:2048'
+            'raRmaAcara' => 'nullable|file|mimes:pdf|max:2048'
         ], [
             'namaAcara.max' => 'Nama Acara Terlalu Panjang',
-            'tanggalCloserec.after_or_equal' => 'Tanggal Close Recruitment Harus Lebih dari Tanggal Open Recruitment',
-            'tanggalAcara.after_or_equal' => 'Tanggal Acara Harus Lebih dari Tanggal Close Recruitment',
+            'tanggalOprec.after_or_equal' => 'Tanggal Open Recruitment Harus Lebih dari Sekarang',
+            'tanggalCloserec.after_or_equal' => 'Tanggal Close Recruitment Harus Lebih dari Tanggal Open Recruitment dan Lebih dari Sekarang',
+            'tanggalAcara.after_or_equal' => 'Tanggal Acara Harus Lebih dari Tanggal Close Recruitment dan Lebih dari Sekarang',
             'lingkupAcara.max' => 'Lingkup Acara Terlalu Panjang',
             'proposalAcara.mimes' => 'Tipe File Harus Berupa PDF',
-            'raRmaAcara.mimes' => 'Tipe File Harus Berupa XLSX atau XLS'
+            'raRmaAcara.mimes' => 'Tipe File Harus Berupa PDF'
         ]);
 
         // Handle file

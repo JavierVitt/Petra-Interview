@@ -4,30 +4,6 @@
 
 @section('content')
 
-    @if ($errors->any())
-        <script>
-            let errorMessages = @json($errors->all());
-            errorMessages.forEach(message => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: message,
-                    confirmButtonText: "Okay"
-                });
-            });
-        </script>
-    @endif
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        </script>
-    @endif
 
     @php $count = 1; @endphp
 
@@ -48,7 +24,7 @@
             </label>
             <!-- Input Field -->
             <div class="w-full flex-grow">
-                <input id="question" type="text" name="question" placeholder="Enter your question here"
+                <input id="question" type="text" name="question" value="{{ old('question') }}" placeholder="Enter your question here"
                     class="w-full bg-gray-200 py-2 px-4 rounded-lg border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition duration-300">
             </div>
             <!-- Submit Button -->

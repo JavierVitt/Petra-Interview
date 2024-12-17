@@ -3,18 +3,7 @@
 @section('title', 'User | Landing Page')
 
 @section('content')
-    @if ($errors->any())
-        <script>
-            let errorMessages = @json($errors->all());
-            errorMessages.forEach(message => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: message,
-                });
-            });
-        </script>
-    @endif
+    
 
     <div class="mx-4 sm:mx-14 mt-10 mb-5">
         <p class="font-bold text-orange-500 text-4xl text-center sm:text-left">Add Event</p>
@@ -27,31 +16,31 @@
                 <div>
                     <p class="text-xl font-bold">Nama Acara</p>
                     <input type="text" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-10 mt-2 px-2"
-                        placeholder="Input Nama Acara Disini" required name="namaAcara">
+                        placeholder="Input Nama Acara Disini" value="{{ old('namaAcara') }}" required name="namaAcara">
                 </div>
                 <div>
                     <p class="text-xl font-bold">Tanggal Open Recruitment</p>
                     <input type="date" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-10 mt-2 px-2" required
-                        name="tanggalOprec">
+                        name="tanggalOprec" value="{{ old('tanggalOprec') }}">
                 </div>
                 <div>
                     <p class="text-xl font-bold">Tanggal Close Recruitment</p>
                     <input type="date" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-10 mt-2 px-2" required
-                        name="tanggalCloserec">
+                        name="tanggalCloserec" value="{{ old('tanggalCloserec') }}">
                 </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 ml-4 sm:ml-8 mt-4 pb-7">
                 <div class="col-span-2">
                     <p class="text-xl font-bold">Deskripsi Acara</p>
                     <input type="text" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-32 mt-2 px-2"
-                        placeholder="Input Deskripsi Acara Disini" required name="deskripsiAcara">
+                        placeholder="Input Deskripsi Acara Disini" required name="deskripsiAcara" value="{{ old('deskripsiAcara') }}">
                 </div>
                 <div class="col-span-1">
                     <p class="text-xl font-bold">Tanggal Acara</p>
                     <input type="date" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-10 mt-2 px-2"
-                        placeholder="Input Tanggal Acara Disini" required name="tanggalAcara">
+                        placeholder="Input Tanggal Acara Disini" required name="tanggalAcara" value="{{ old('tanggalAcara') }}">
                     <p class="text-xl font-bold mt-3">Lingkup Acara</p>
-                    <select name="lingkupAcara" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-10 mt-2 px-2">
+                    <select name="lingkupAcara" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-10 mt-2 px-2" value="{{ old('lingkupAcara') }}">
                         <option value="Intern IC">Intern IC</option>
                         <option value="Fakultas">Fakultas</option>
                         <option value="Universitas">Universitas</option>
@@ -65,17 +54,17 @@
                 <div>
                     <p class="text-xl font-bold">Lokasi Acara</p>
                     <input type="text" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-10 mt-2 px-2"
-                        placeholder="Input Lokasi Acara Disini" required name="lokasiAcara">
+                        placeholder="Input Lokasi Acara Disini" required name="lokasiAcara" value="{{ old('lokasiAcara') }}">
                 </div>
                 <div>
                     <p class="text-xl font-bold">Proposal Acara</p>
                     <input type="file" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-10 mt-2 pt-1 pl-1 px-2" required
-                        name="proposalAcara">
+                        name="proposalAcara" value="{{ old('proposalAcara') }}">
                 </div>
                 <div>
                     <p class="text-xl font-bold">RA/RMA Acara</p>
                     <input type="file" class="rounded-md bg-gray-300 w-full sm:w-11/12 h-10 mt-2 pt-1 pl-1" required
-                        name="raRmaAcara">
+                        name="raRmaAcara" value="{{ old('raRmaAcara') }}">
                 </div>
             </div>
         </div>

@@ -32,7 +32,7 @@ class InterviewController extends Controller
             array_push($list, $event[0]['event_id']);
         }
 
-        $events = Event::whereIn('id', $list)->distinct()->orderBy('recruitment_end_date')->get();
+        $events = Event::whereIn('id', $list)->where('status',1)->distinct()->orderBy('recruitment_end_date')->get();
 
         return view('interviewer/manage_interview', ['events' => $events]);
     }
