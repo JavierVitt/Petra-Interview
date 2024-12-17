@@ -27,37 +27,42 @@
             });
         </script>
     @endif
-    @foreach ($firstDivisionQuestion as $index => $question)
-        <div class="question">
-            <p class="text-left pl-16 text-4xl mt-12 montserratBold">
-                Question {{ $index + 1 }} : {{ $question->question_content }}
-            </p>
-            <div class="text-center">
-                <textarea class="answer-textarea mt-8 bg-gray-300 mx-8 w-11/12 h-24 p-3 rounded-lg overflow-auto"
-                    data-question-id="{{ $question->id }}" placeholder="Masukan Jawaban Anda Disini">
-        </textarea>
-                <input type="hidden" class="registration-id" value="{{ $registrationId }}">
+
+    <div class="mt-6 mx-4 sm:mx-14">
+        @foreach ($firstDivisionQuestion as $index => $question)
+            <div class="question mb-8">
+                <p class="text-left text-2xl sm:text-3xl montserratBold mb-4">
+                    Question {{ $index + 1 }}: {{ $question->question_content }}
+                </p>
+                <div class="text-center">
+                    <textarea class="answer-textarea mt-2 bg-gray-300 w-full h-32 p-3 rounded-lg resize-none"
+                        data-question-id="{{ $question->id }}" placeholder="Masukkan Jawaban Anda Disini"></textarea>
+                    <input type="hidden" class="registration-id" value="{{ $registrationId }}">
+                </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
 
-    @foreach ($secondDivisionQuestion as $index => $question)
-        <p class="text-left pl-16 text-4xl mt-12 montserratBold">Question {{ $index + 1 }} :
-            {{ $question->question_content }}
-        </p>
-        <div class="text-center">
-            <textarea class="mt-8 bg-gray-300 mx-8 w-11/12 h-24 p-3 rounded-lg overflow-auto"
-                placeholder="Masukan Jawaban Anda Disini"></textarea>
-        </div>
-    @endforeach
+        @foreach ($secondDivisionQuestion as $index => $question)
+            <div class="mb-8">
+                <p class="text-left text-2xl sm:text-3xl montserratBold mb-4">
+                    Question {{ $index + 1 }}: {{ $question->question_content }}
+                </p>
+                <div class="text-center">
+                    <textarea class="mt-2 bg-gray-300 w-full h-32 p-3 rounded-lg resize-none" placeholder="Masukkan Jawaban Anda Disini"></textarea>
+                </div>
+            </div>
+        @endforeach
+    </div>
 
-    <div class="flex my-8 justify-center items-center">
-        <button class="bg-green-400 py-3 px-8 rounded-lg text-white text-lg border-black border-1 hover:shadow-xl"
+    <!-- Finish Button -->
+    <div class="flex my-8 justify-center">
+        <button class="bg-green-400 py-3 px-8 rounded-lg text-white text-lg hover:shadow-lg transition duration-300"
             onclick="window.location.href = '{{ route('manage_interview_details', ['event_id' => $eventId]) }}'">
             Finish
         </button>
     </div>
 
+    <!-- AJAX Script -->
     <script>
         $(document).ready(function() {
             $('.answer-textarea').on('blur', function() {
@@ -95,8 +100,7 @@
                         });
                     },
                     error: function(xhr) {
-                        console.error('Error saving answer:', xhr.responseJSON
-                            .message);
+                        console.error('Error saving answer:', xhr.responseJSON.message);
                     },
                     complete: function() {
                         textarea.prop('disabled', false);
@@ -105,5 +109,4 @@
             });
         });
     </script>
-
 @endsection
