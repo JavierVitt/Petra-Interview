@@ -69,9 +69,15 @@
        
       </div>
 
-      <div class="">
+      <div class="flex items-center gap-4">
         <button class="montserratBold text-peinter-yellow bg-white p-3 rounded-2xl" id="interviewerMode" style="display: none; " onclick="toggleMode(); window.location.href='{{ route('register_to_event') }}'">Interviewer Mode</button>
         <button class="montserratBold text-peinter-purple bg-white p-3 rounded-2xl" id="intervieweeMode"  onclick="toggleMode(); window.location.href='{{ route('add_event') }}'" >Interviewee Mode</button>
+        <form action="{{ route('logout.session') }}" method="POST">
+          @csrf
+          <button type="submit" class="montserratSemiBold rounded-md px-3 py-2 text-sm text-gray-700 font-medium hover:text-orange-500">
+              Logout
+          </button>
+      </form>
       </div>
 
       <script>
