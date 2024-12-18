@@ -27,93 +27,76 @@
             });
         </script>
     @endif
-    <div class="flex flex-col lg:flex-row justify-center items-center min-h-screen py-6 space-y-8 lg:space-y-0 lg:space-x-8">
+
+    <!-- Container for Signup Page -->
+    <div class="flex flex-col lg:flex-row min-h-screen items-center justify-center bg-gray-100 mx-4">
         <!-- Left Section: Image -->
-        <div class="flex-1 w-full max-w-md">
-            <img class="object-cover w-full h-full rounded-lg shadow-lg" src="{{ asset('assets/signup-banner.png') }}"
-                alt="">
+        <div class="w-full lg:w-3/5 flex justify-center py-4 items-center mb-8 lg:mb-0 px-4">
+            <img class="w-full h-auto lg:h-screen object-cover rounded-lg shadow-lg"
+                src="{{ asset('assets/signup-banner.png') }}" alt="Sign Up Banner">
         </div>
 
         <!-- Right Section: Form -->
-        <div class="flex-1 w-full max-w-md">
-            <form action="{{ route('sign_up') }}" method="post" enctype="multipart/form-data"
-                class="bg-white shadow-md rounded px-8 pt-6 pb-6">
+        <div class="w-full lg:w-2/5 mx-4 px-6 sm:px-12 lg:px-16 py-8 bg-white shadow-lg rounded-lg">
+            <h1 class="text-3xl lg:text-4xl font-extrabold text-center text-gray-800 mb-6">Sign Up</h1>
+            <form action="{{ route('sign_up') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <h1 class="montserratExtraBold text-4xl text-center mb-5">Sign Up</h1>
-
-                <!-- Email Input -->
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 montserratBold" for="email">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
                         Email Address
                     </label>
                     <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline montserratRegular text-sm"
-                        id="email" value="{{ old('email') }}" type="text" name="email" placeholder="Email address" required
+                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        id="email" type="email" name="email" placeholder="Email address" required
                         autocomplete="off">
                 </div>
-
-                <!-- Password Input -->
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 montserratBold" for="password">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                         Password
                     </label>
                     <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password" value="{{ old('password') }}" name="password" type="password" placeholder="******************" required>
+                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        id="password" name="password" type="password" placeholder="******************" required>
                 </div>
-
-                <!-- Full Name Input -->
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 montserratBold" for="namaLengkap">
-                        Nama Lengkap
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="namaLengkap">
+                        Full Name
                     </label>
                     <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline montserratRegular text-sm"
-                        id="namaLengkap" value="{{ old('namaLengkap') }}" type="text" name="namaLengkap" placeholder="Nama Lengkap" required
-                        autocomplete="off">
+                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        id="namaLengkap" type="text" name="namaLengkap" placeholder="Full Name" required>
                 </div>
-
-                <!-- Birthdate Input -->
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 montserratBold" for="tanggalLahir">
-                        Tanggal Lahir
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="tanggalLahir">
+                        Birthdate
                     </label>
                     <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline montserratRegular text-sm"
-                        id="tanggalLahir" value="{{ old('tanggalLahir') }}" type="date" name="tanggalLahir" required autocomplete="off">
+                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        id="tanggalLahir" type="date" name="tanggalLahir" required>
                 </div>
-
-                <!-- Profile Picture Input -->
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 montserratBold" for="profilePicture">
-                        Pas Foto 3x4
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="profilePicture">
+                        Profile Picture (3x4)
                     </label>
                     <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline montserratRegular text-sm"
-                        id="profilePicture" value="{{ old('profilePicture') }}" type="file" name="profilePicture" required autocomplete="off">
+                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        id="profilePicture" type="file" name="profilePicture" required>
                 </div>
-
-                <!-- Submit Button -->
-                <div class="flex items-center justify-center">
+                <div class="flex justify-center mb-4">
                     <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline montserratBold"
-                        type="submit">
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition w-full lg:w-auto">
                         Sign Up
                     </button>
                 </div>
-
-                <!-- Link to Login -->
-                <div class="flex items-center justify-center pt-2">
-                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                        href="/">
-                        Have an account?
+                <div class="text-center">
+                    <a href="/" class="text-blue-500 hover:underline font-semibold text-sm">
+                        Already have an account? Log in here
                     </a>
                 </div>
-
-                <p class="text-center text-gray-500 text-xs mt-4">
-                    &copy;2024 Peinter Corp. All rights reserved.
-                </p>
             </form>
+            <p class="text-center text-gray-400 text-xs mt-6">
+                &copy;2024 Peinter Corp. All rights reserved.
+            </p>
         </div>
     </div>
 @endsection
