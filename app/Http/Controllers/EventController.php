@@ -204,11 +204,12 @@ class EventController extends Controller
     {
         $event = Event::where('id', $eventId)->first();
         $event->status = 2;
+        //Push
         $event->save();
         return redirect()->route('manage_events');
     }
 
-    /**
+    /**s
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
