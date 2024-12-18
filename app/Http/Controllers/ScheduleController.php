@@ -25,11 +25,12 @@ class ScheduleController extends Controller
         $eventCloserec = $event->recruitment_end_date;
 
         $validation = $request->validate([
-            'date' => 'required|after_or_equal:' . $eventOprec . '|before_or_equal:' . $eventCloserec,
+            'date' => 'required|after_or_equal:' . $eventOprec . '|before_or_equal:' . $eventCloserec . '|after:now',
             'time' => 'required',
             'location' => 'required'
         ], [
             'date.required' => 'Harap Mengisi Tanggal Interview',
+            'date.after' => 'Tanggal Interview Wajib Lebih dari Hari Ini',
             'date.after_or_equal' => 'Tanggal Open Recruitment Dimulai Pada : ' . $eventOprec,
             'date.before_or_equal' => 'Tanggal Close Recruitment Berakhir Pada : ' . $eventCloserec,
             'time.required' => 'Harap Mengisi Waktu Interview',
@@ -138,7 +139,7 @@ class ScheduleController extends Controller
                 ->distinct()
                 ->where('interviewer_id', $interviewer->id)
                 ->where('event_id', $eventId)
-                ->where('interview_date', '<', now())
+                ->where('interview_date', '>', now())
                 ->get();
 
             // Return the schedules as JSON

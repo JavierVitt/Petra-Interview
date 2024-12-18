@@ -11,9 +11,9 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mx-4 sm:mx-10">
             <!-- Left Side: Event Description and Divisions -->
             <div class="border-black border-r p-5">
-                <p class="font-bold text-xl mb-4">Description</p>
+                <p class="font-bold text-xl mb-4">Deskripsi</p>
                 <p class="text-justify">{{ $event['event_description'] }}</p>
-                <p class="font-bold text-xl mt-4">Division Available</p>
+                <p class="font-bold text-xl mt-4">Divisi yang Tersedia</p>
                 <div class="grid grid-cols-2 gap-3 mt-4 text-center">
                     @foreach ($event['divisions'] as $division)
                         <div class="col-span-1 flex justify-center items-center px-1">
