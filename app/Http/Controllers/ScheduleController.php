@@ -138,7 +138,7 @@ class ScheduleController extends Controller
                 ->distinct()
                 ->where('interviewer_id', $interviewer->id)
                 ->where('event_id', $eventId)
-                ->where('event_date', '<', now())
+                ->where('interview_date', '<', now())
                 ->get();
 
             // Return the schedules as JSON
