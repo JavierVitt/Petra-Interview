@@ -85,17 +85,16 @@ class EventController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'namaAcara' => 'required|string|max:255',
-            'tanggalOprec' => 'required|date|after_or_equal:now',
+            'tanggalOprec' => 'required|date',
             'tanggalCloserec' => 'required|date|after_or_equal:tanggalOprec|after_or_equal:now',
             'deskripsiAcara' => 'nullable|string',
             'tanggalAcara' => 'required|date|after_or_equal:tanggalCloserec|after_or_equal:now',
             'lingkupAcara' => 'nullable|string|max:255',
             'lokasiAcara' => 'nullable|string|max:255',
-            'proposalAcara' => 'nullable|file|mimes:pdf|max:2048',
-            'raRmaAcara' => 'nullable|file|mimes:pdf|max:2048'
+            'proposalAcara' => 'nullable|file|mimes:pdf|max:10056',
+            'raRmaAcara' => 'nullable|file|mimes:pdf|max:10056'
         ], [
             'namaAcara.max' => 'Nama Acara Terlalu Panjang',
-            'tanggalOprec.after_or_equal' => 'Tanggal Open Recruitment Harus Lebih dari Sekarang',
             'tanggalCloserec.after_or_equal' => 'Tanggal Close Recruitment Harus Lebih dari Tanggal Open Recruitment dan Lebih dari Sekarang',
             'tanggalAcara.after_or_equal' => 'Tanggal Acara Harus Lebih dari Tanggal Close Recruitment dan Lebih dari Sekarang',
             'lingkupAcara.max' => 'Lingkup Acara Terlalu Panjang',
