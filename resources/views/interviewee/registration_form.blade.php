@@ -34,7 +34,7 @@
                         <div>
                             <!-- Name Field -->
                             <p class="font-bold">Nama</p>
-                            <input type="text" name="nama" value="{{ old('nama') }}" class="rounded-lg h-10 w-full px-3"
+                            <input type="text" name="nama" class="rounded-lg h-10 w-full px-3"
                                 value="{{ $userData['name'] }}" readonly>
 
                             <!-- First Division Selection -->

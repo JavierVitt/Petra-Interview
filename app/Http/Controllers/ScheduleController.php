@@ -61,7 +61,7 @@ class ScheduleController extends Controller
 
         $allSchedule = AvailableInterviewSchedule::getScheduleById($eventId, $interviewerId);
 
-        return redirect('/set_available_schedule/' . $eventId)->with('schedules', $allSchedule);
+        return redirect('/set_available_schedule/' . $eventId)->with(['schedules'=> $allSchedule, 'success'=>'Jadwal Berhasil Ditambah !']);
     }
     public function showPage($eventId)
     {
