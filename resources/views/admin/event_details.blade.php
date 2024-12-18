@@ -43,12 +43,12 @@
                     <div>
                         <strong class="text-gray-600">Proposal (PDF):</strong>
                         <a href="{{ asset('proposals/' . $event->proposal) }}" target="_blank"
-                            class="text-blue-500">Download
+                            class="text-blue-500">View
                             Proposal</a>
                     </div>
                     <div class="mt-4">
                         <strong class="text-gray-600">RA-RMA (XLS):</strong>
-                        <a href="{{ asset('raRmas/' . $event->raRma) }}" target="_blank" class="text-blue-500">Download
+                        <a href="{{ asset('raRmas/' . $event->raRma) }}" target="_blank" class="text-blue-500">View
                             RA-RMA</a>
                     </div>
                 </div>
