@@ -46,7 +46,7 @@
                     </label>
                     <input
                         class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                        id="email" type="email" placeholder="Email address" name="email" required>
+                        id="email" type="email" placeholder="&#64;john.petra.ac.id" name="email" required>
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">

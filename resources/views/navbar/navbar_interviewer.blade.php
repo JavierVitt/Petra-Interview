@@ -77,7 +77,15 @@
           <button type="submit" class="montserratSemiBold rounded-md px-3 py-2 text-sm text-gray-700 font-medium hover:text-orange-500">
               Logout
           </button>
-      </form>
+        </form>
+        <div class="flex items-center gap-2">
+          <img 
+            src="{{ Auth::user()->profile_picture ?? asset('default-profile.png') }}" 
+            alt="Profile Picture" 
+            class="w-10 h-10 rounded-full object-cover"
+          >
+          <span class="montserratBold text-gray-800 font-medium">{{ Auth::user()->name ?? 'Guest' }}</span>
+        </div>
       </div>
 
       <script>
