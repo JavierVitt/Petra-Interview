@@ -256,7 +256,7 @@ class EventController extends Controller
         $statuss = [];
 
         foreach ($registrations as $registration) {
-            $interviewerName = User::where('id', $registration->id)->first()->name;
+            $interviewerName = User::where('id', $registration->interviewer_id)->first()->name;
             $jadwal = AvailableInterviewSchedule::where('id', $registration->available_interview_id)->first()->interview_date . ", " . AvailableInterviewSchedule::where('id', $registration->available_interview_id)->first()->interview_time;
             $eventName = Event::where('id', $registration->event_id)->first()->event_name;
             $status = $registration->status;

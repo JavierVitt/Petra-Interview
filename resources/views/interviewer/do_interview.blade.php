@@ -20,12 +20,14 @@
         @endforeach
 
         @foreach ($secondDivisionQuestion as $index => $question)
-            <div class="mb-8">
+            <div class="question mb-8">
                 <p class="text-left text-2xl sm:text-3xl montserratBold mb-4">
                     Question {{ $index + 1 }}: {{ $question->question_content }}
                 </p>
                 <div class="text-center">
-                    <textarea class="mt-2 bg-gray-300 w-full h-32 p-3 rounded-lg resize-none" placeholder="Masukkan Jawaban Anda Disini"></textarea>
+                    <textarea class="answer-textarea mt-2 bg-gray-300 w-full h-32 p-3 rounded-lg resize-none"
+                        data-question-id="{{ $question->id }}" placeholder="Masukkan Jawaban Anda Disini"></textarea>
+                    <input type="hidden" class="registration-id" value="{{ $registrationId }}">
                 </div>
             </div>
         @endforeach

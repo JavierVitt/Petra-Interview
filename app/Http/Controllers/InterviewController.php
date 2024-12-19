@@ -132,7 +132,7 @@ class InterviewController extends Controller
             foreach ($secondDivisionQuestions as $questionForSecondDivision) {
                 $interview = new Interview();
                 $interview->registration_id = $registrationId;
-                $checkInterview = Interview::where('question_id', $questionForSecondDivision->id)->where('registration_id', $registrationId)->first()->id;
+                $checkInterview = Interview::where('question_id', $questionForSecondDivision->id)->where('registration_id', $registrationId)->first();
 
                 $interview->question_id = $questionForSecondDivision->id;
                 if ($checkInterview == null) {

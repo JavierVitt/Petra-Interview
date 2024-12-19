@@ -38,7 +38,7 @@
         <!-- Right Section: Form -->
         <div class="w-full lg:w-2/5 mx-4 px-6 sm:px-12 lg:px-16 py-8 bg-white shadow-lg rounded-lg">
             <h1 class="text-3xl lg:text-4xl font-extrabold text-center text-gray-800 mb-6">Login</h1>
-            <form action="{{ route('login') }}" method="post">
+            <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
