@@ -21,9 +21,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $userId = User::where('email',Session::get('email'))->first()->id;
+        $userId = User::where('email', Session::get('email'))->first()->id;
 
-        $listOfInterviewers = Interviewer::where('user_id',$userId)->get();
+        $listOfInterviewers = Interviewer::where('user_id', $userId)->get();
         $listOfRegistereds = Registration::where('user_id', $userId)->get();
 
         $eventLists = [];
@@ -38,7 +38,7 @@ class EventController extends Controller
 
         foreach ($listOfInterviewers as $listOfInterviewer) {
             $BPHKOfInterviewers = $listOfInterviewer->user_id;
-            if($BPHKOfInterviewers == $userId){
+            if ($BPHKOfInterviewers == $userId) {
                 array_push($eventLists, $listOfInterviewer->event_id);
             }
         }
@@ -51,11 +51,11 @@ class EventController extends Controller
         $events = Event::when(!empty($eventLists), function ($query) use ($eventLists) {
             return $query->whereNotIn('id', $eventLists);
         })
-        ->where('recruitment_start_date', '<=', now())
-        ->where('recruitment_end_date', '>=', now())
-        ->where('status', 1)
-        ->orderBy('recruitment_end_date')
-        ->get();
+            ->where('recruitment_start_date', '<=', now())
+            ->where('recruitment_end_date', '>=', now())
+            ->where('status', 1)
+            ->orderBy('recruitment_end_date')
+            ->get();
 
         // $events = Event::whereNotIn('event_id',$eventLists)->where('recruitment_end_date', '>', now())->where('status', 1)->orderBy('recruitment_end_date')->get();
 
@@ -128,6 +128,17 @@ class EventController extends Controller
             $validatedData['raRmaAcara'] = $raRmaNewName;
         }
 
+        // Ambil semua atribut dari request
+        $attributes = array_keys($request->all());
+
+        // Filter atribut yang mengandung 'divisi'
+        $divisiAttributes = array_filter($attributes, function ($key) {
+            return str_starts_with($key, 'divisionName');
+        });
+
+        // Hitung jumlah atribut 'divisi'
+        $jumlahDivisi = count($divisiAttributes);
+
         $event = new Event();
 
         $event->chairman_id = $chairmanId;
@@ -145,12 +156,12 @@ class EventController extends Controller
         $event->updated_at = now();
 
         $event->save();
-        
+
         $eventId = Event::where('proposal', $validatedData['proposalAcara'])->value('id');
-        
+
         $divisionController = new DivisionController();
-        
-        if ($divisionController->store($request, $eventId) == false) {
+
+        if ($divisionController->store($request, $eventId, $jumlahDivisi) == false) {
             return redirect()->route('add_event')->withErrors(['errors' => 'Seluruh Interviewer Wajib Sign Up Terlebih Dahulu di Peinter']);
         }
 

@@ -11,9 +11,9 @@ use App\Models\Recruitment;
 
 class DivisionController extends Controller
 {
-    public function store(Request $request, $eventId)
+    public function store(Request $request, $eventId, $jumlahDivisi)
     {
-        $count = $request['count'];
+        $count = $jumlahDivisi;
 
         $divisions = [];
         $interviewers = [];
@@ -24,18 +24,24 @@ class DivisionController extends Controller
             array_push($interviewers, $request['interviewer' . (($i * 2) + 2)]);
         }
 
-        for ($i=0; $i <$count ; $i++) { 
+
+        for ($i = 0; $i < $count; $i++) {
             $interviewer1 = User::where('email', $interviewers[2 * $i])->first();
             $interviewer2 = User::where('email', $interviewers[(2 * $i) + 1])->first();
 
+
+
             if (is_null($interviewer1)) {
+                
                 return false;
             }
-            if ($interviewer2 != null) {
-                return false;
-            }
+            // if ($interviewer2 != null) {
+            //     // echo "$interviewer1";
+            //     dd($interviewer2);
+            //     return false;
+            // }
         }
-        
+
         for ($i = 0; $i < $count; $i++) {
 
             $division = new Division();
@@ -48,9 +54,11 @@ class DivisionController extends Controller
             $division->save();
 
             $recruitment = new Recruitment();
-            $recruitment->division_id = Division::where('event_id',$eventId)->where('division_name',$divisions[$i])->first()->id;
+            $recruitment->division_id = Division::where('event_id', $eventId)->where('division_name', $divisions[$i])->first()->id;
             $recruitment->save();
         }
+        // echo "$interviewer1";
+        // dd($interviewer2);
         for ($i = 0; $i < $count; $i++) {
             $divisionId = Division::where('division_name', $divisions[$i])->where('event_id', $eventId)->first();
             $interviewer1 = User::where('email', $interviewers[2 * $i])->first();
@@ -59,26 +67,26 @@ class DivisionController extends Controller
                 return false;
             }
             $interviewer = new Interviewer();
-            
+
             $interviewer->division_id = $divisionId->id;
             $interviewer->user_id = $interviewer1->id;
             $interviewer->event_id = $eventId;
-            
+
             $interviewer->save();
-            
+
             $interviewer2 = User::where('email', $interviewers[(2 * $i) + 1])->first();
-            
+
             if ($interviewer2 != null) {
                 $interviewer = new Interviewer();
-                
+
                 $interviewer->division_id = $divisionId->id;
                 $interviewer->user_id = $interviewer2->id;
                 $interviewer->event_id = $eventId;
-                
+
                 $interviewer->save();
             }
         }
-        
+
         return true;
     }
 }
