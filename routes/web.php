@@ -48,7 +48,9 @@ Route::get('/manage_interview', [InterviewController::class, 'show'])->name('man
 
 Route::get('/manage_interview_details/{event_id}', [InterviewController::class, 'showDetails'])->name('manage_interview_details');
 
+// /do_interview/{{ $eventId }}/{{ $registrationId[$index] }}/{{ $intervieweeId[$index] }}
 
+Route::get('/do_interview/{eventId}/{registrationId}/{intervieweeId}',[InterviewController::class,'doInterview'])->name('do_interview');
 
 // Route::get('/set_interview_questions', function () {
 

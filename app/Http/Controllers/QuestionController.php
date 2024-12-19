@@ -15,7 +15,7 @@ class QuestionController extends Controller
 
         $userId = User::where('email',Session::get('email'))->first()->id;
 
-        $divisionId = Interviewer::where('event_id',$eventId)->where('user_id',$userId)->first()->id;
+        $divisionId = Interviewer::where('event_id',$eventId)->where('user_id',$userId)->first()->division_id;
 
         $questions = Question::where('division_id',$divisionId)->get();
 
@@ -35,7 +35,9 @@ class QuestionController extends Controller
 
         $userId = User::where('email',Session::get('email'))->first()->id;
 
-        $divisionId = Interviewer::where('event_id',$eventId)->where('user_id',$userId)->first()->id;
+        $divisionId = Interviewer::where('event_id',$eventId)->where('user_id',$userId)->first()->division_id;
+
+        // dd($divisionId);
 
         $question = new Question();
 

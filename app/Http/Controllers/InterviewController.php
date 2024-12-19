@@ -30,7 +30,7 @@ class InterviewController extends Controller
         // dd($divisions);
 
         foreach ($divisions as $division) {
-            $event = Division::where('id', $division->id)->get();
+            $event = Division::where('id', $division->division_id)->get();
             // dd($event[0]['event_id']);
             array_push($list, $event[0]['event_id']);
         }

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Models\AvailableInterviewSchedule;
+use App\Models\Interview;
 use App\Models\Registration;
 
 class ScheduleController extends Controller
@@ -127,17 +128,28 @@ class ScheduleController extends Controller
                 return response()->json(['error' => 'User not found'], 404);
             }
 
-
-
             $interviewer = Interviewer::where('division_id', $division)->where('event_id', $eventId)->first();
             if (!$interviewer) {
                 return response()->json(['error' => 'Interviewer not found'], 404);
             }
 
+            // $divisionId = Division::where('division', $division)->first();
+
+            $listInterviewer = [];
+
+            $interviewerWithDivisionId = Interviewer::where('division_id', $division)->where('event_id', $eventId)->get();
+
+            foreach($interviewerWithDivisionId as $interviewer){
+                array_push($listInterviewer, $interviewer->id);
+            }
+
+            // $interviewer = Interviewer::where('division_id',$division);
+
+
             // Fetch available interview schedules
             $schedules = AvailableInterviewSchedule::select('interview_date')
                 ->distinct()
-                ->where('interviewer_id', $interviewer->id)
+                ->whereIn('interviewer_id', $listInterviewer)
                 ->where('event_id', $eventId)
                 ->where('interview_date', '>', now())
                 ->get();
@@ -165,18 +177,17 @@ class ScheduleController extends Controller
 
         $availableInterviews = Registration::all();
 
-        $listOfSchedules = [];
+        $listOfSchedulesTaken = [];
 
         foreach ($availableInterviews as $availableInterview) {
-            array_push($listOfSchedules, $availableInterview->available_interview_id);
+            array_push($listOfSchedulesTaken, $availableInterview->available_interview_id);
         }
 
         // $times = AvailableInterviewSchedule::where('interviewer_id', $interviewer)->where('event_id', $eventId)->where('interview_date', $tanggal)->get();
 
-        $times = AvailableInterviewSchedule::where('interviewer_id', $interviewer)
-            ->where('event_id', $eventId)
+        $times = AvailableInterviewSchedule::where('event_id', $eventId)
             ->where('interview_date', $tanggal)
-            ->whereNotIn('id', $listOfSchedules)
+            ->whereNotIn('id', $listOfSchedulesTaken)
             ->get();
 
         return response()->json($times);
