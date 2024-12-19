@@ -63,7 +63,7 @@
                     </button>
                 </div>
                 <div class="text-center">
-                    <a href="/sign_up" class="text-blue-500 hover:underline font-semibold text-sm">
+                    <a href="{{ route('sign_up_page') }}" class="text-blue-500 hover:underline font-semibold text-sm">
                         First Timer? Sign Up Here
                     </a>
                 </div>
