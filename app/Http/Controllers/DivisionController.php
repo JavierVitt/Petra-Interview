@@ -24,6 +24,8 @@ class DivisionController extends Controller
             array_push($interviewers, $request['interviewer' . (($i * 2) + 2)]);
         }
 
+        // dd($interviewers);
+
         for ($i=0; $i <$count ; $i++) { 
             $interviewer1 = User::where('email', $interviewers[2 * $i])->first();
             $interviewer2 = User::where('email', $interviewers[(2 * $i) + 1])->first();
@@ -31,7 +33,7 @@ class DivisionController extends Controller
             if (is_null($interviewer1)) {
                 return false;
             }
-            if ($interviewer2 != null) {
+            if (is_null($interviewer2)) {
                 return false;
             }
         }

@@ -28,12 +28,16 @@ class InterviewController extends Controller
         $list = [];
 
         foreach ($divisions as $division) {
-            $event = Division::where('id', $division->id)->get();
-            array_push($list, $event[0]['event_id']);
+            $events = Division::where('id', $division->division_id)->get();
+            foreach ($events as $event) {
+                array_push($list, $event['event_id']);
+            }
         }
-
+        
+        // dd($events);
         $events = Event::whereIn('id', $list)->where('status',1)->distinct()->orderBy('recruitment_end_date')->get();
 
+        
         return view('interviewer/manage_interview', ['events' => $events]);
     }
     public function showDetails(Event $eventId)
