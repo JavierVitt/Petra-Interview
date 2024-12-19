@@ -79,7 +79,7 @@ class UserController extends Controller
     }
     public function login(Request $request)
     {
-
+        dd('ini masuk user controller');
         if (Str::endsWith($request->email, '@admin')) {
             $checkIsAdmin = User::where('email', $request->email)->where('role', 1)->first();
 
