@@ -1,16 +1,15 @@
 <?php
 
-use App\Models\Interview;
+use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\RegistrationController;
+use App\Models\Interview;
 
 // login
 Route::get('/', function () {
@@ -129,14 +128,3 @@ Route::get('/event_details/{event_id}', [EventController::class, 'details'])->na
 
 Route::post('/acc_event/{event_id}', [EventController::class, 'acceptEvent'])->name('acc_event');
 Route::post('/rej_event/{event_id}', [EventController::class, 'rejectEvent'])->name('rej_event');
-
-Route::get('run_migrate', function () {
-    Artisan::call('migrate:fresh');
-    return 'Migrated';
-});
-
-
-Route::get('run_migrate_seed', function () {
-    Artisan::call('migrate:fresh --seed');
-    return 'Migrated';
-});
