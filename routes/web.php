@@ -10,6 +10,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\RegistrationController;
 use App\Models\Interview;
+use Illuminate\Support\Facades\Artisan;
 
 // login
 Route::get('/', function () {
@@ -130,3 +131,14 @@ Route::get('/event_details/{event_id}', [EventController::class, 'details'])->na
 
 Route::post('/acc_event/{event_id}', [EventController::class, 'acceptEvent'])->name('acc_event');
 Route::post('/rej_event/{event_id}', [EventController::class, 'rejectEvent'])->name('rej_event');
+
+
+Route::get('run_migration', function() {
+    Artisan::call('migrate:fresh');
+    return 'Database Migrated Successfully';
+});
+
+Route::get('run_migration_seed', function() {
+    Artisan::call('migrate:fresh --seed');
+    return 'Database Migrated Successfully';
+});
