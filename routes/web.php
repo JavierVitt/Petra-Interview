@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('general/login');
 })->name('redirect_login');
 
-Route::post('/', [UserController::class, 'login'])->name('login');
+Route::post('/cobaajalahwes', [UserController::class, 'login'])->name('login');
 
 Route::get('/sign_up', function () {
     return view('general/signup');
