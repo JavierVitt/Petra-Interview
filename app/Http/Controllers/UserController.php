@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\error;
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
-use function Laravel\Prompts\error;
 
 class UserController extends Controller
 {
