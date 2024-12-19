@@ -89,7 +89,7 @@
                     </button>
                 </div>
                 <div class="text-center">
-                    <a href="/" class="text-blue-500 hover:underline font-semibold text-sm">
+                    <a href="{{ route('redirect_login') }}" class="text-blue-500 hover:underline font-semibold text-sm">
                         Already have an account? Log in here
                     </a>
                 </div>
